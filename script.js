@@ -11,38 +11,30 @@
     }
   }
 
+  function switchAgent(root, agent) {
+    if (!root || !agent) return;
+    if (root.getAttribute("data-active-agent") === agent) return;
+
+    root.setAttribute("data-active-agent", agent);
+
+    root.querySelectorAll("[data-agent-tab]").forEach(function (tab) {
+      var isActive = tab.getAttribute("data-agent-tab") === agent;
+      tab.classList.toggle("is-active", isActive);
+      tab.setAttribute("aria-selected", String(isActive));
+      tab.setAttribute("tabindex", isActive ? "0" : "0");
+    });
+
+    root.querySelectorAll("[data-agent-content]").forEach(function (node) {
+      var isActive = node.getAttribute("data-agent-content") === agent;
+      if (isActive) {
+        node.removeAttribute("hidden");
+      } else {
+        node.setAttribute("hidden", "");
+      }
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
-    var teamSection = document.querySelector(".team-section");
-    var teamHero = teamSection ? teamSection.querySelector(":scope > .hero") : null;
-    if (teamSection && teamHero && !document.querySelector(".hero.hero--primary")) {
-      var primaryHero = teamHero.cloneNode(true);
-      primaryHero.classList.add("hero--primary");
-
-      var idMap = {};
-      primaryHero.querySelectorAll("[id]").forEach(function (node) {
-        var oldId = node.id;
-        var newId = oldId + "-primary";
-        idMap[oldId] = newId;
-        node.id = newId;
-      });
-
-      primaryHero.querySelectorAll("[aria-controls]").forEach(function (node) {
-        var oldControls = node.getAttribute("aria-controls");
-        if (oldControls && idMap[oldControls]) {
-          node.setAttribute("aria-controls", idMap[oldControls]);
-        }
-      });
-
-      primaryHero.querySelectorAll("[aria-labelledby]").forEach(function (node) {
-        var oldLabelledBy = node.getAttribute("aria-labelledby");
-        if (oldLabelledBy && idMap[oldLabelledBy]) {
-          node.setAttribute("aria-labelledby", idMap[oldLabelledBy]);
-        }
-      });
-
-      teamSection.parentNode.insertBefore(primaryHero, teamSection);
-    }
-
     document.querySelectorAll("[data-anim-accordion]").forEach(function (root) {
       root.addEventListener("click", function (event) {
         var btn = event.target.closest("[data-acc-toggle]");
@@ -59,6 +51,23 @@
         });
 
         syncItemOpen(item, true);
+      });
+    });
+
+    document.querySelectorAll("[data-agent-switch]").forEach(function (root) {
+      root.addEventListener("click", function (event) {
+        var tab = event.target.closest("[data-agent-tab]");
+        if (!tab || !root.contains(tab)) return;
+        switchAgent(root, tab.getAttribute("data-agent-tab"));
+      });
+
+      root.querySelectorAll("[data-agent-tab]").forEach(function (tab) {
+        tab.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            switchAgent(root, tab.getAttribute("data-agent-tab"));
+          }
+        });
       });
     });
   });
