@@ -1,0 +1,1471 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Блок 1 в 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root { --bg-light: #0a0a0f; --bg-dark: #0a0b0d; --container-width: 1204px; --text-dark: #f5f5f5; --text-gray: #86868b; --green: #2ecc71; --border-color: #2a2a2f; }
+      * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+      body { background-color: var(--bg-light); color: var(--text-dark); -webkit-font-smoothing: antialiased; }
+      .wrapper { width: 100%; max-width: 1920px; margin: 0 auto; overflow: hidden; }
+      .container { width: var(--container-width); margin: 0 auto; position: relative; }
+      .light-section { padding-top: 60px; background-color: var(--bg-light); }
+      .subtitle-top { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: #929292; margin-bottom: 20px; font-weight: 700; }
+      .intro-top {
+        width: 1204px;
+        height: 211px;
+        border: 0.5px solid rgba(255, 255, 255, 0.2);
+        display: grid;
+        grid-template-columns: 1fr 816px;
+        gap: 24px;
+        padding: 24px;
+      }
+      .intro-title {
+        color: #fff;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: 0.2px;
+      }
+      .quote-box {
+        width: 816px;
+        height: 163px;
+        border: 0.5px solid #d9d9d9;
+        opacity: 0.9;
+        background: transparent;
+        box-shadow: 0 0 10.7px 0 rgba(255, 255, 255, 0.25);
+        padding: 24px;
+        position: relative;
+      }
+      .quote-mark { width: 16.32px; height: 13.824px; margin-bottom: 18px; }
+      .quote-text {
+        color: #fff;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22.4px;
+      }
+      .quote-author {
+        position: absolute;
+        right: 24px;
+        bottom: 18px;
+        color: #fff;
+        font-size: 16px;
+        font-style: italic;
+        font-weight: 200;
+        line-height: 35px;
+      }
+      .grid-row-1 {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: 365px 1fr;
+        gap: 40px;
+      }
+      .left-main-card {
+        height: 421px;
+        border: 0.3px dashed #888;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+      }
+      .left-main-title {
+        color: #fff;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: 0.2px;
+        margin-bottom: 24px;
+      }
+      .left-main-text {
+        color: #9c9c9d;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22.4px;
+      }
+      .btn-light {
+        margin-top: auto;
+        width: 120px;
+        height: 44px;
+  padding: 0 32px;
+        border: none;
+        border-radius: 8px;
+        background: #e6e6e6;
+        color: #2f3031;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .cards-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+      }
+      .stat-card {
+        height: 421px;
+        border: 0.5px solid rgba(255, 255, 255, 0.2);
+        background: transparent;
+        box-shadow: 0 0 7.9px 0 rgba(255, 255, 255, 0.25);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .card-title { color: #9c9c9d; font-size: 20px; font-weight: 500; margin-bottom: 24px; text-transform: uppercase; }
+      .card-value { font-size: 72px; font-weight: 500; color: #fff; line-height: 1; }
+      .anim-ebitda-card {
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
+      .anim-ebitda-card__label {
+        margin: 0 0 14px;
+        color: #9c9c9d;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 100%;
+        letter-spacing: 0.2px;
+        text-transform: uppercase;
+        opacity: 0.95;
+      }
+      .anim-ebitda-card__head {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .anim-ebitda-card__value {
+        margin: 0;
+        color: #fff;
+        font-size: 72px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: -4.2px;
+      }
+      .anim-ebitda-card__trend {
+        display: inline-flex;
+        width: 22.518px;
+        height: 22.518px;
+        align-items: center;
+        justify-content: center;
+      }
+      .anim-ebitda-card__arrow {
+        width: 100%;
+        height: 100%;
+        transform-origin: 50% 50%;
+        animation: anim-ebitda-arrow-pulse 1.8s ease-in-out 1.1s infinite alternate;
+      }
+      .anim-ebitda-card__chart-wrap {
+        margin-top: 16px;
+        width: 197px;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .anim-ebitda-card__chart {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .anim-ebitda-card__chart path {
+        transform-box: fill-box;
+        transform-origin: 50% 100%;
+        transform: scaleY(0);
+        animation: anim-ebitda-chart-rise 1.08s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+      }
+      .anim-ebitda-card__chart path:nth-of-type(1) { animation-delay: 0.06s; }
+      .anim-ebitda-card__chart path:nth-of-type(2) { animation-delay: 0.12s; }
+      .anim-ebitda-card__chart path:nth-of-type(3) { animation-delay: 0.18s; }
+      .anim-ebitda-card__chart path:nth-of-type(4) { animation-delay: 0.24s; }
+      .anim-ebitda-card__chart path:nth-of-type(5) { animation-delay: 0.3s; }
+      .anim-ebitda-card__chart path:nth-of-type(6) { animation-delay: 0.36s; }
+      .anim-ebitda-card__chart path:nth-of-type(7) { animation-delay: 0.42s; }
+      .anim-ebitda-card__chart path:nth-of-type(8) { animation-delay: 0.48s; }
+      .anim-ebitda-card__chart path:nth-of-type(9) { animation-delay: 0.54s; }
+      @keyframes anim-ebitda-chart-rise {
+        from { transform: scaleY(0); }
+        to { transform: scaleY(1); }
+      }
+      @keyframes anim-ebitda-arrow-pulse {
+        from { transform: translateY(0); filter: drop-shadow(0 0 2px rgba(66, 204, 119, 0.25)); }
+        to { transform: translateY(-1px); filter: drop-shadow(0 0 8px rgba(66, 204, 119, 0.55)); }
+      }
+      .anim-ebitda-card__foot {
+        margin-top: auto;
+        margin-left: -24px;
+        margin-right: -24px;
+        padding: 24px 24px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .anim-ebitda-card__hint {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: 0.2px;
+      }
+      .anim-ebitda-card__sub {
+        margin: 10px 0 0;
+        color: #9c9c9d;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.35;
+        letter-spacing: 0.2px;
+      }
+      .anim-metrics {
+        margin-top: 0;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .anim-metrics__title {
+        margin: 0 0 18px;
+        color: #9c9c9d;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 100%;
+        text-transform: uppercase;
+        letter-spacing: 0.2px;
+      }
+      .anim-metrics__matrix-wrap {
+        position: relative;
+        overflow: hidden;
+        margin-top: auto;
+        margin-bottom: auto;
+        padding: 8px 0;
+      }
+      .anim-metrics__matrix {
+        margin: 0;
+        text-align: left;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 24px;
+        line-height: 1.55;
+        letter-spacing: 0.04em;
+        word-break: break-all;
+        -webkit-mask-image: radial-gradient(ellipse 82% 88% at 50% 48%, #fff 0%, #fff 32%, rgba(255, 255, 255, 0.55) 68%, rgba(255, 255, 255, 0.08) 100%);
+        mask-image: radial-gradient(ellipse 82% 88% at 50% 48%, #fff 0%, #fff 32%, rgba(255, 255, 255, 0.55) 68%, rgba(255, 255, 255, 0.08) 100%);
+      }
+      .anim-metrics__noise {
+        color: #22252b;
+        font-weight: 400;
+        text-shadow: 0 0 0.5px rgba(0, 0, 0, 0.9);
+        opacity: 0.55;
+      }
+      .anim-metrics__num {
+        color: #39ff14;
+        font-weight: 700;
+        animation: anim-metrics-glow 4.5s ease-in-out infinite;
+        text-shadow: 0 0 6px rgba(57, 255, 20, 0.65), 0 0 18px rgba(0, 255, 159, 0.45), 0 0 34px rgba(57, 255, 20, 0.22);
+      }
+      .anim-metrics__num--d1 { animation-delay: 0.35s; }
+      .anim-metrics__num--d2 { animation-delay: 0.75s; }
+      .anim-metrics__num--d3 { animation-delay: 1.15s; }
+      .anim-metrics__num--d4 { animation-delay: 1.55s; }
+      @keyframes anim-metrics-glow {
+        0%, 100% {
+          opacity: 0.18;
+          color: #1fb814;
+          text-shadow: 0 0 2px rgba(57, 255, 20, 0.12), 0 0 6px rgba(0, 255, 159, 0.08);
+          filter: brightness(0.72);
+        }
+        50% {
+          opacity: 1;
+          color: #39ff14;
+          text-shadow: 0 0 10px rgba(57, 255, 20, 1), 0 0 26px rgba(0, 255, 159, 0.65), 0 0 48px rgba(57, 255, 20, 0.4), 0 0 80px rgba(0, 255, 127, 0.2);
+          filter: brightness(1.12);
+        }
+      }
+      .anim-kpi-card {
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
+      .anim-kpi-card__label {
+        margin: 0 0 14px;
+        color: #9c9c9d;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 100%;
+        text-transform: uppercase;
+        letter-spacing: 0.2px;
+      }
+      .anim-kpi-card__gauge {
+        position: relative;
+        width: min(100%, 250px);
+        aspect-ratio: 1;
+        margin: 8px auto 16px;
+      }
+      .anim-kpi-card__dial-wrap {
+        position: absolute;
+        inset: 0;
+      }
+      .anim-kpi-card__svg {
+        display: block;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        animation: anim-kpi-svg-glow 2.4s ease-in-out 1.1s infinite alternate;
+      }
+      .anim-kpi-mask-progress-ring,
+      .anim-kpi-ring--progress-fill {
+        animation: anim-kpi-progress-sweep 1.75s cubic-bezier(0.12, 0.88, 0.18, 1) 0.1s forwards;
+      }
+      .anim-kpi-ring--progress {
+        animation: anim-kpi-dashes-drift 1.75s cubic-bezier(0.12, 0.88, 0.18, 1) 0.1s forwards;
+      }
+      .anim-kpi-green-wobble {
+        transform-origin: 100px 100px;
+        transform-box: fill-box;
+        animation: anim-kpi-wobble 6.8s ease-in-out 1.95s infinite alternate;
+      }
+      .anim-kpi-ring--track {
+        animation: anim-kpi-track-draw 0.95s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+      .anim-kpi-ring--outer {
+        opacity: 0;
+        animation: anim-kpi-outer-in 0.65s ease-out 0.08s forwards;
+      }
+      .anim-kpi-card__center-val {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 44px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        pointer-events: none;
+        animation: anim-kpi-val-in 0.55s ease-out 0.28s both;
+      }
+      .anim-kpi-card__rule {
+        margin: auto -24px 20px;
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .anim-kpi-card__delta {
+        margin: 0 0 10px;
+        color: #fff;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1.1;
+      }
+      .anim-kpi-card__note {
+        margin: 0;
+        color: #9c9c9d;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.35;
+      }
+      @keyframes anim-kpi-progress-sweep {
+        from { stroke-dasharray: 0 100; }
+        to { stroke-dasharray: 60 100; }
+      }
+      @keyframes anim-kpi-dashes-drift {
+        from { stroke-dashoffset: 11; }
+        to { stroke-dashoffset: 0; }
+      }
+      @keyframes anim-kpi-wobble {
+        from { transform: rotate(-1.65deg); }
+        to { transform: rotate(1.65deg); }
+      }
+      @keyframes anim-kpi-track-draw {
+        to { stroke-dasharray: 75 100; }
+      }
+      @keyframes anim-kpi-outer-in {
+        to { opacity: 1; }
+      }
+      @keyframes anim-kpi-svg-glow {
+        from { filter: drop-shadow(0 0 6px rgba(52, 155, 92, 0.28)); }
+        to { filter: drop-shadow(0 0 14px rgba(52, 155, 92, 0.55)) drop-shadow(0 0 22px rgba(52, 155, 92, 0.18)); }
+      }
+      @keyframes anim-kpi-val-in {
+        from { opacity: 0; transform: scale(0.94); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .anim-ebitda-card__chart path { animation: none; transform: scaleY(1); }
+        .anim-ebitda-card__arrow { animation: none; }
+        .anim-metrics__num {
+          animation: none;
+          opacity: 0.95;
+          color: #39ff14;
+          text-shadow: 0 0 10px rgba(57, 255, 20, 0.55), 0 0 24px rgba(0, 255, 159, 0.3);
+          filter: none;
+        }
+        .anim-kpi-card__svg { animation: none; filter: drop-shadow(0 0 10px rgba(52, 155, 92, 0.35)); }
+        .anim-kpi-mask-progress-ring,
+        .anim-kpi-ring--progress-fill { animation: none; stroke-dasharray: 60 100; }
+        .anim-kpi-ring--progress { animation: none; stroke-dashoffset: 0; }
+        .anim-kpi-green-wobble { animation: none; transform: none; }
+        .anim-kpi-ring--track { animation: none; stroke-dasharray: 75 100; }
+        .anim-kpi-ring--outer { animation: none; opacity: 1; }
+        .anim-kpi-card__center-val { animation: none; }
+      }
+      .grid-row-2 { display: grid; grid-template-columns: 365px 1fr; gap: 40px; margin-top: 40px; margin-bottom: 20px; }
+      .integration-box {
+        height: 424px;
+        border: 0.5px solid rgba(255, 255, 255, 0.2);
+        background: transparent;
+        box-shadow: 0 0 7.9px 0 rgba(255, 255, 255, 0.25);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+      }
+      .integration-box h2 { color: #fff; font-size: 72.4px; font-style: normal; font-weight: 500; line-height: 76px; letter-spacing: -2.16px; margin-bottom: 0; }
+      .integration-box .sub {
+        font-size: 12.2px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px;
+        background: linear-gradient(160deg, #fff 0%, #fff 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 40px;
+      }
+      .integration-box h3 { color: #fff; font-family: Inter, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; line-height: 100%; letter-spacing: 0.2px; margin-bottom: 16px; }
+      .integration-box p { color: #9c9c9d; font-family: Inter, sans-serif; font-size: 16px; font-style: normal; font-weight: 500; line-height: 22.4px; }
+      .dark-chart-box {
+        height: 424px;
+        border: 0.5px solid rgba(255, 255, 255, 0.2);
+        background: transparent;
+        box-shadow: 0 0 7.9px 0 rgba(255, 255, 255, 0.25);
+        padding: 16px 24px 24px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+      }
+      .anim-split__demo { width: 100%; }
+      .anim-split__stage.anim-split__stage--dark.anim-combo-stage {
+        padding: 0;
+        min-height: 0;
+        min-width: 0;
+        max-width: 100%;
+        background: transparent !important;
+        border: none !important;
+      }
+      .anim-combo-chart {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background: transparent;
+        border-radius: 0;
+        border: none;
+      }
+      .anim-combo-chart__inner {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        height: clamp(120px, 28vw, 168px);
+        min-height: 120px;
+      }
+      .anim-combo-chart__svg {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+      .anim-combo-chart__area { clip-path: inset(0 100% 0 0); animation: anim-combo-area-reveal 1.85s cubic-bezier(0.22, 0.82, 0.28, 1) 0.15s forwards; }
+      @keyframes anim-combo-area-reveal { to { clip-path: inset(0 0 0 0); } }
+      .anim-combo-chart__line {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        filter: drop-shadow(0 0 5px rgba(52, 211, 153, 0.55)) drop-shadow(0 0 12px rgba(52, 211, 153, 0.22));
+        animation: anim-combo-line-draw 2.05s cubic-bezier(0.18, 0.82, 0.32, 1) forwards, anim-combo-line-glow 5.2s ease-in-out 2.35s infinite alternate;
+      }
+      @keyframes anim-combo-line-draw { to { stroke-dashoffset: 0; } }
+      @keyframes anim-combo-line-glow {
+        from { filter: drop-shadow(0 0 4px rgba(52, 211, 153, 0.35)) drop-shadow(0 0 10px rgba(52, 211, 153, 0.12)); }
+        to { filter: drop-shadow(0 0 11px rgba(52, 211, 153, 0.75)) drop-shadow(0 0 22px rgba(52, 211, 153, 0.28)); }
+      }
+      .anim-combo-chart__dots { position: absolute; inset: 0; z-index: 2; display: flex; justify-content: space-between; align-items: flex-end; pointer-events: none; }
+      .anim-combo-dot-column {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 6px;
+      }
+      .anim-combo-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+        opacity: 0;
+        transform: scale(0.35);
+        animation: anim-combo-dot-in .38s cubic-bezier(.34,1.35,.64,1) calc(var(--c) * 28ms + var(--r) * 18ms) forwards,
+          anim-combo-dot-wave 3.4s ease-in-out calc(1.85s + (var(--c) + var(--r)) * 58ms) infinite;
+      }
+      @keyframes anim-combo-dot-in { to { opacity: 0.9; transform: scale(1); } }
+      @keyframes anim-combo-dot-wave {
+        0%,
+        100% {
+          opacity: 0.18;
+          transform: scale(0.78);
+          filter: brightness(0.5);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.12);
+          filter: brightness(1.55);
+        }
+      }
+      .anim-combo-replay {
+        appearance: none;
+        cursor: pointer;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        padding: 0.5rem 1.05rem;
+        border-radius: 8px;
+        border: 1px solid rgba(45, 212, 191, 0.55);
+        color: #101828;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+        transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      }
+      .anim-combo-replay:hover:not(:disabled) { background: rgba(45, 212, 191, 0.14); border-color: rgba(45, 212, 191, 0.88); color: #0f7669; }
+      .anim-combo-replay:disabled { cursor: not-allowed; opacity: 0.48; }
+      .anim-combo-replay:focus-visible { outline: 2px solid rgba(45, 212, 191, 0.9); outline-offset: 2px; }
+      .integrations-list {
+        margin-top: auto;
+        border-top: none;
+        padding-top: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .integration-item {
+        display: flex;
+        width: 749px;
+        padding: 4px 8px;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 6px;
+        background: rgba(110, 254, 127, 0.02);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 22.4px;
+        color: #ccc;
+        border-bottom: none;
+      }
+      @media (max-width: 520px) {
+        .anim-combo-chart { padding: 8px 10px; }
+        .anim-combo-dot-column { gap: 4px; }
+        .anim-combo-dot { width: 5px; height: 5px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .anim-combo-chart__area { animation: none; clip-path: inset(0 0 0 0); }
+        .anim-combo-chart__line { animation: none; stroke-dashoffset: 0; filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.45)); }
+        .anim-combo-dot { animation: none; opacity: 0.85; transform: scale(1); filter: none; }
+      }
+      .grid-row-3 { display: grid; grid-template-columns: 365px 1fr; gap: 40px; margin-top: 40px; align-items: stretch; }
+      .radar-info {
+        height: 424px;
+        border: 0.5px solid rgba(255, 255, 255, 0.2);
+        background: transparent;
+        box-shadow: 0 0 7.9px 0 rgba(255, 255, 255, 0.25);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+      }
+      .radar-info__title {
+        color: #fff;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: 0.2px;
+        margin-bottom: 20px;
+      }
+      .radar-info__text {
+        color: #9c9c9d;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 22.4px;
+      }
+      .radar-info__btn {
+        margin-top: auto;
+        width: 190px;
+        height: 44px;
+  padding: 0 32px;
+        border: none;
+        border-radius: 8px;
+        background: #e6e6e6;
+        color: #2f3031;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .radar-stage {
+        height: 424px;
+        border: 0.5px solid rgba(255, 255, 255, 0.2);
+        background: transparent;
+        box-shadow: 0 0 7.9px 0 rgba(255, 255, 255, 0.25);
+        padding: 0 24px 0px;
+        display: flex;
+        flex-direction: column;
+      }
+      /* ——— Радар-локатор (луч + точки) ——— */
+      .anim-radar {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        margin-inline: auto;
+        margin-top: auto;
+        aspect-ratio: 2 / 1;
+        height: auto;
+        min-height: 0;
+        overflow: hidden;
+        border-radius: 999px 999px 0 0;
+        background: radial-gradient(circle at bottom center, rgba(52, 211, 153, 0.15) 0%, transparent 70%);
+        border-bottom: 1px solid rgba(52, 211, 153, 0.3);
+      }
+      .anim-radar__grid {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .anim-radar__grid-line {
+        fill: none;
+        stroke: rgba(52, 211, 153, 0.2);
+        stroke-width: 1;
+      }
+      .anim-radar__grid-border {
+        fill: none;
+        stroke: rgba(52, 211, 153, 0.5);
+        stroke-width: 2;
+      }
+      .anim-radar__sweep {
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        z-index: 2;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        height: auto;
+        border-radius: 50%;
+        background: conic-gradient(
+          from 0deg,
+          rgba(52, 211, 153, 0) 0%,
+          rgba(52, 211, 153, 0) 70%,
+          rgba(52, 211, 153, 0.1) 95%,
+          rgba(52, 211, 153, 0.8) 100%
+        );
+        transform: translate(-50%, -50%);
+        transform-origin: 50% 50%;
+      }
+      .anim-radar__point {
+        position: absolute;
+        width: var(--size);
+        height: var(--size);
+        background-color: var(--color);
+        border-radius: 50%;
+        transform: translate(-50%, 50%);
+        z-index: 3;
+        box-shadow: 0 0 10px var(--color);
+        transition: box-shadow 1.5s ease;
+      }
+      .anim-radar__point::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: var(--color);
+        z-index: -1;
+        animation: anim-radar-pulse 2s infinite ease-out;
+        transition: opacity 1.5s ease;
+      }
+      @keyframes anim-radar-pulse {
+        0% { width: 100%; height: 100%; opacity: 0.8; }
+        100% { width: 400%; height: 400%; opacity: 0; }
+      }
+      .anim-radar__label {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translate(-50%, 15px);
+        color: var(--color);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        white-space: nowrap;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 1.5s ease, transform 1.5s ease;
+      }
+      .anim-radar__point--scanned { box-shadow: 0 0 25px 8px var(--color); transition: box-shadow 0.1s ease; }
+      .anim-radar__point--scanned .anim-radar__label {
+        opacity: 1;
+        transform: translate(-50%, -10px);
+        transition: opacity 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .anim-radar__point--scanned::before { opacity: 0; transition: opacity 0.1s ease; }
+      .anim-radar--reduced .anim-radar__point::before { animation: none; opacity: 0; }
+      .dark-section { background-color: var(--bg-dark); color: #fff; padding-top: 40px; padding-bottom: 80px; }
+      .grid-row-4 {
+        height: 424px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 403px;
+        border: 0.5px solid rgba(255, 255, 255, 0.2);
+        background: transparent;
+        box-shadow: 0 0 7.9px 0 rgba(255, 255, 255, 0.25);
+        margin-bottom: 40px;
+      }
+      .dark-col {
+        padding: 24px 18px;
+        border-right: 0.5px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        flex-direction: column;
+      }
+      .dark-col:last-child { border-right: none; }
+      .dark-col__label {
+        color: #888;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 21px;
+        letter-spacing: 0.7px;
+        margin-bottom: 18px;
+      }
+      .dark-col h3 {
+        color: #fff;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: 0.2px;
+        margin-bottom: 18px;
+      }
+      .dark-col p {
+        color: #9c9c9d;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22.4px;
+      }
+      .eff-value {
+        font-size: 72px;
+        color: #2ecc71;
+        font-weight: 500;
+        line-height: 1;
+        margin-bottom: 16px;
+      }
+      .eff-strip {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 0;
+      }
+      .eff-bottom-wrap { margin-top: auto; }
+      .eff-strip span {
+        width: 12px;
+        height: 12px;
+        background: #2ecc71;
+      }
+      .eff-strip span.is-off { background: #3d3d3d; }
+      .eff-bottom-title {
+        color: #fff;
+        font-family: Inter, sans-serif;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: 0.2px;
+        margin-bottom: 8px;
+      }
+      .eff-bottom-text {
+        color: #9c9c9d;
+        font-family: Inter, sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 100%;
+      }
+      .employee-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: auto;
+      }
+      .employee-item {
+        height: 30px;
+        border: 0.5px solid rgba(255, 255, 255, 0.45);
+        padding: 4px 8px 4px 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #fff;
+        font-family: Inter, sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+      }
+      .employee-item.is-dim { opacity: 0.35; }
+      .ai-banner {
+        width: 1204px;
+        height: 436px;
+        border: 0.5px solid #ffffff4d;
+        background: #0b0f18;
+        box-shadow: 0 0 17.1px 0 rgba(255, 255, 255, 0.12);
+        padding: 24px 32px 32px;
+        border-radius: 0;
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+      }
+      .ai-banner-kicker {
+        color: #929292;
+        font-family: Inter, sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 18px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .ai-banner h1 {
+        color: #fff;
+        font-family: Inter, sans-serif;
+        font-size: 56px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 65.52px;
+        letter-spacing: 0.2px;
+        max-width: 740px;
+      }
+      .ai-banner-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; }
+.btn-dark-primary { background: #fff; color: #000; padding: 0 32px; height: 44px; border: none; border-radius: 8px; font-weight: 500; cursor: pointer; }
+      .ai-banner-text {
+        color: #9c9c9d;
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22.4px;
+        max-width: 430px;
+        text-align: left;
+      }
+      .dark-row-2col { display: grid; grid-template-columns: 480px 1fr; gap: 0; margin-bottom: 40px; height: 421px; border: 0.5px solid rgba(255,255,255,.2); box-shadow: 0 0 7.9px 0 rgba(255,255,255,.25); }
+      .dark-box { background: transparent; padding: 24px 18px; border-right: 0.5px solid rgba(255,255,255,.2); display: flex; flex-direction: column; justify-content: flex-start; }
+      .dark-box-title { font-size: 12px; text-transform: uppercase; color: #929292; margin-bottom: 20px; font-weight: 700; letter-spacing: 3px; line-height: 18px; }
+      .dark-box h2 {
+        color: #fff;
+        font-family: Inter, sans-serif;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: 0.2px;
+        margin-bottom: 20px;
+      }
+      .dark-box p {
+        color: #fff;
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22.4px;
+        opacity: 0.6;
+      }
+      .dark-box--media { border-right: none; padding: 0; display: flex; align-items: stretch; justify-content: stretch; overflow: hidden; }
+      .dark-box--voice { align-items: center; justify-content: center; position: relative; overflow: hidden; }
+      .dark-box--voice::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 18%;
+        height: 100%;
+        pointer-events: none;
+        background: linear-gradient(
+          90deg,
+          rgba(8, 14, 30, 0) 0%,
+          rgba(8, 14, 30, 0.12) 45%,
+          rgba(8, 14, 30, 0.28) 72%,
+          rgba(8, 14, 30, 0.42) 100%
+        );
+        backdrop-filter: blur(3px);
+        z-index: 3;
+      }
+      .dark-box--globe { align-items: flex-end; }
+      .anim-voice { width: 100%; padding: 24px 20px; display: flex; align-items: center; justify-content: flex-end; overflow: hidden; }
+      .anim-voice__card {
+        width: 92%;
+        max-width: none;
+        border: 0.5px solid rgba(255,255,255,.25);
+        border-radius: 18px;
+        box-shadow: 0 0 15px rgba(255,255,255,.16);
+        padding: 36px 40px;
+        margin-right: -6%;
+        animation: anim-voice-reveal 900ms cubic-bezier(0.22, 0.82, 0.28, 1) both;
+      }
+      .anim-voice__wave-wrap { position: relative; height: 220px; display: flex; align-items: center; justify-content: center; border: 0.5px solid rgba(255,255,255,.2); border-radius: 16px; }
+      .anim-voice__wave { display: flex; align-items: center; gap: 4px; }
+      .anim-voice__bar { width: 6px; border-radius: 999px; background: #fff; height: 8px; opacity: 0.85; }
+      .anim-voice__fade { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(0,0,0,0) 40%, rgba(5,8,17,.55) 100%); pointer-events: none; border-radius: 16px; }
+      .anim-voice__text { margin-top: 20px; text-align: center; color: #9c9c9d; font-size: 16px; line-height: 22.4px; font-weight: 500; }
+      @keyframes anim-voice-reveal {
+        from { opacity: 0; transform: translateX(80px); clip-path: inset(0 0 0 100%); }
+        to { opacity: 1; transform: translateX(0); clip-path: inset(0 0 0 0); }
+      }
+      .anim-globe { position: relative; width: 100%; max-width: 100%; margin-inline: 0; height: 100%; min-height: 100%; border-radius: 0; overflow: hidden; background: transparent; border: none; }
+      .anim-globe__canvas { display: block; width: 100%; height: 100%; }
+      .anim-globe__atmosphere { position: absolute; inset: 0; pointer-events: none; box-shadow: none; }
+      .secicon-row {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 0.5px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 7.9px 0 rgba(255, 255, 255, 0.25);
+      }
+      .secicon-item {
+        min-height: 164px;
+        padding: 24px;
+        border-right: 0.5px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .secicon-item:last-child { border-right: none; }
+      .secicon-item img {
+        object-fit: contain;
+        margin-bottom: 16px;
+      }
+      .secicon-title {
+        color: #fff;
+        text-align: center;
+        font-family: Inter, sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: 0.2px;
+        margin-bottom: 8px;
+      }
+      .secicon-text {
+        color: #fff;
+        text-align: center;
+        font-family: Inter, sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 120%;
+        opacity: 0.6;
+      }
+      .status-dot { display: inline-block; width: 8px; height: 8px; background: var(--green); border-radius: 50%; margin-right: 6px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <section class="light-section">
+        <div class="container">
+          <div class="subtitle-top">ЧТО ВЫ ПОЛУЧАЕТЕ?</div>
+          <div class="intro-top">
+            <h2 class="intro-title">Ваш бизнес становится<br />эффективнее каждый<br />день</h2>
+            <div class="quote-box">
+              <svg class="quote-mark" xmlns="http://www.w3.org/2000/svg" width="17" height="14" viewBox="0 0 17 14" fill="none">
+                <path d="M15.84 0L13.536 7.488H16.32V13.824H9.984V8.208L13.056 0H15.84ZM5.856 0L3.552 7.488H6.336V13.824H0V8.208L3.072 0H5.856Z" fill="white"/>
+              </svg>
+              <p class="quote-text">Через месяц вы увидите: где теряли деньги,<br />кто в команде тормозит рост, какие товары<br />сжигают бюджет. И главное - что с этим делать</p>
+              <p class="quote-author">- Алекс, основатель</p>
+            </div>
+          </div>
+
+          <div class="grid-row-1">
+            <div class="left-main-card">
+              <h3 class="left-main-title">Управляйте бизнесом<br />как настоящий<br />эксперт</h3>
+              <p class="left-main-text">Иван Иванович находит скрытые потери, убыточные кампании и неэффективные товары. Каждая рекомендация - конкретное действие с суммой: сколько вы сэкономите или заработаете дополнительно.</p>
+              <button class="btn-light">Начать</button>
+            </div>
+            <div class="cards-grid-3">
+              <div class="stat-card">
+                <article class="anim-ebitda-card">
+                  <p class="anim-ebitda-card__label">МАРЖА EBITDA</p>
+                  <div class="anim-ebitda-card__head">
+                    <span class="anim-ebitda-card__value">20%</span>
+                    <span class="anim-ebitda-card__trend" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none" class="anim-ebitda-card__arrow">
+                        <path d="M22.5184 0V17.003H19.3986V5.32576L2.20615 22.5183L0 20.3121L17.1926 3.11965L5.51535 3.11964V0H22.5184Z" fill="#42CC77" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="anim-ebitda-card__chart-wrap" role="presentation">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="anim-ebitda-card__chart" width="197" height="49" viewBox="0 0 197 49" fill="none" aria-hidden="true">
+                      <path d="M0 48.5C0 47.1193 1.11929 46 2.5 46C3.88071 46 5 47.1193 5 48.5V49H0V48.5Z" fill="white" />
+                      <path d="M24 44.5C24 43.1193 25.1193 42 26.5 42C27.8807 42 29 43.1193 29 44.5V49H24V44.5Z" fill="white" />
+                      <path d="M48 42.5C48 41.1193 49.1193 40 50.5 40C51.8807 40 53 41.1193 53 42.5V49H48V42.5Z" fill="white" />
+                      <path d="M72 34.5C72 33.1193 73.1193 32 74.5 32C75.8807 32 77 33.1193 77 34.5V49H72V34.5Z" fill="white" />
+                      <path d="M96 36.5C96 35.1193 97.1193 34 98.5 34C99.8807 34 101 35.1193 101 36.5V49H96V36.5Z" fill="white" />
+                      <path d="M120 38.5C120 37.1193 121.119 36 122.5 36C123.881 36 125 37.1193 125 38.5V49H120V38.5Z" fill="white" />
+                      <path d="M144 34.5C144 33.1193 145.119 32 146.5 32C147.881 32 149 33.1193 149 34.5V49H144V34.5Z" fill="white" />
+                      <path d="M168 15.5C168 14.1193 169.119 13 170.5 13C171.881 13 173 14.1193 173 15.5V49H168V15.5Z" fill="white" />
+                      <path d="M192 2.5C192 1.11929 193.119 0 194.5 0C195.881 0 197 1.11929 197 2.5V49H192V2.5Z" fill="white" />
+                    </svg>
+                  </div>
+                  <footer class="anim-ebitda-card__foot">
+                    <p class="anim-ebitda-card__hint">Маржа растет!</p>
+                    <p class="anim-ebitda-card__sub">Выше среднего по рынку</p>
+                  </footer>
+                </article>
+              </div>
+              <div class="stat-card">
+                <div class="anim-metrics">
+                  <p class="anim-metrics__title">КЛЮЧЕВЫЕ МЕТРИКИ</p>
+                  <div class="anim-metrics__matrix-wrap">
+                    <p class="anim-metrics__matrix">
+                      <span class="anim-metrics__noise">q&gt;8x+mK2nF&gt;kP+aQ/</span><span class="anim-metrics__num anim-metrics__num--d1">50</span><span class="anim-metrics__noise">eV8wD2n+7J&gt;5rT1sY6</span><br />
+                      <span class="anim-metrics__noise">mK9pX3/zR+2v&gt;6bY4cF1</span><span class="anim-metrics__num anim-metrics__num--d2">70</span><span class="anim-metrics__noise">+5qP8kZ1r&gt;7wX9yH2</span><br />
+                      <span class="anim-metrics__noise">/nL2mK8+rT&gt;9wZ1jH6b</span><span class="anim-metrics__num anim-metrics__num--d3">20</span><span class="anim-metrics__noise">3xW7v+1kP&gt;8tL4nJ0</span><br />
+                      <span class="anim-metrics__noise">jH7bY3F9s&gt;6eN2aM8xW</span><span class="anim-metrics__num anim-metrics__num--d4">30</span><span class="anim-metrics__noise">+7nX5m&gt;3pV9rT1</span><br />
+                      <span class="anim-metrics__noise">zR6tJ2&gt;+9vX1wQ5</span><br />
+                      <span class="anim-metrics__noise">&gt;5yB8cF2e+kP1+qZ6/</span><span class="anim-metrics__num anim-metrics__num--d1">50</span><span class="anim-metrics__noise">8mH2jG5&gt;7sD</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <article class="anim-kpi-card">
+                  <p class="anim-kpi-card__label">ЧИСТАЯ ПРИБЫЛЬ</p>
+                  <div class="anim-kpi-card__gauge">
+                    <div class="anim-kpi-card__dial-wrap" aria-hidden="true">
+                      <svg class="anim-kpi-card__svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                          <mask id="anim-kpi-mask-bg" maskUnits="userSpaceOnUse">
+                            <circle cx="100" cy="100" r="75" fill="none" stroke="white" stroke-width="30" pathLength="100" stroke-dasharray="75 100" transform="rotate(135 100 100)" />
+                          </mask>
+                          <mask id="anim-kpi-mask-progress" maskUnits="userSpaceOnUse">
+                            <circle class="anim-kpi-mask-progress-ring" cx="100" cy="100" r="75" fill="none" stroke="white" stroke-width="30" pathLength="100" stroke-dasharray="0 100" transform="rotate(135 100 100)" />
+                          </mask>
+                        </defs>
+                        <circle class="anim-kpi-ring anim-kpi-ring--outer" cx="100" cy="100" r="90" fill="none" stroke="#2a2d32" stroke-width="2" stroke-dasharray="1 5" mask="url(#anim-kpi-mask-bg)" />
+                        <circle class="anim-kpi-ring anim-kpi-ring--track" cx="100" cy="100" r="62" fill="none" stroke="#1f2227" stroke-width="1.5" pathLength="100" stroke-dasharray="0 100" transform="rotate(135 100 100)" />
+                        <circle cx="100" cy="100" r="75" fill="none" stroke="#1c1f24" stroke-width="14" stroke-dasharray="4 2" mask="url(#anim-kpi-mask-bg)" />
+                        <g class="anim-kpi-green-wobble">
+                          <circle class="anim-kpi-ring anim-kpi-ring--progress-fill" cx="100" cy="100" r="75" fill="none" stroke="#349b5c" stroke-width="11" stroke-linecap="round" pathLength="100" stroke-dasharray="0 100" mask="url(#anim-kpi-mask-progress)" />
+                          <circle class="anim-kpi-ring anim-kpi-ring--progress" cx="100" cy="100" r="75" fill="none" stroke="#349b5c" stroke-width="14" stroke-dasharray="4 2" stroke-dashoffset="0" mask="url(#anim-kpi-mask-progress)" />
+                        </g>
+                      </svg>
+                    </div>
+                    <span class="anim-kpi-card__center-val">2,694</span>
+                  </div>
+                  <hr class="anim-kpi-card__rule" />
+                  <p class="anim-kpi-card__delta">+18%</p>
+                  <p class="anim-kpi-card__note">к прошлому месяцу</p>
+                </article>
+              </div>
+            </div>
+          </div>
+          <div class="grid-row-2">
+            <div class="integration-box">
+              <h2>16+</h2>
+              <div class="sub">Интеграций&nbsp; | Обновление каждые 6 часов</div>
+              <h3>Знает о вашем<br />бизнесе больше, чем вы</h3>
+              <p>WB, Ozon, склад, банк, CRM, календарь,Telegram - 16+ источников данных собраны <br />в одном месте. Вы физически <br />не можете держать <br />это всё в голове. <br />А Иван Иванович - может.</p>
+            </div>
+            <div class="dark-chart-box">
+              <div style="font-size:14px;color:#9c9c9d;margin-bottom:6px;">Интеграции</div>
+              <div class="anim-split__demo">
+                <div class="anim-split__stage anim-split__stage--dark anim-combo-stage" aria-hidden="true">
+                  <div class="anim-combo-chart">
+                    <div class="anim-combo-chart__inner">
+                      <svg class="anim-combo-chart__svg" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                          <linearGradient id="anim-combo-area-grad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="rgba(52, 211, 153, 0.42)" />
+                            <stop offset="100%" stop-color="rgba(52, 211, 153, 0)" />
+                          </linearGradient>
+                        </defs>
+                        <path class="anim-combo-chart__area" d="M0,120 L80,105 L160,114 L240,90 L320,118 L400,106 L480,98 L560,84 L640,102 L720,78 L800,96 L880,86 L1000,110 L1000,200 L0,200 Z" fill="url(#anim-combo-area-grad)" />
+                        <path class="anim-combo-chart__line" d="M0,120 L80,105 L160,114 L240,90 L320,118 L400,106 L480,98 L560,84 L640,102 L720,78 L800,96 L880,86 L1000,110" fill="none" stroke="#34d399" stroke-width="3" pathLength="1" />
+                      </svg>
+                      <div class="anim-combo-chart__dots" aria-hidden="true">
+                        <div class="anim-combo-dot-column" style="--c:0"><span class="anim-combo-dot" style="--r:0"></span></div>
+                        <div class="anim-combo-dot-column" style="--c:1"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span></div>
+                        <div class="anim-combo-dot-column" style="--c:2"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span><span class="anim-combo-dot" style="--r:2"></span></div>
+                        <div class="anim-combo-dot-column" style="--c:3"><span class="anim-combo-dot" style="--r:0"></span></div>
+                        <div class="anim-combo-dot-column" style="--c:4"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span></div>
+                        <div class="anim-combo-dot-column" style="--c:5"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span><span class="anim-combo-dot" style="--r:2"></span></div>
+                        <div class="anim-combo-dot-column" style="--c:6"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span><span class="anim-combo-dot" style="--r:2"></span><span class="anim-combo-dot" style="--r:3"></span></div>
+                        <div class="anim-combo-dot-column" style="--c:7"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span></div>
+                        <div class="anim-combo-dot-column" style="--c:8"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span><span class="anim-combo-dot" style="--r:2"></span></div>
+                        <div class="anim-combo-dot-column" style="--c:9"><span class="anim-combo-dot" style="--r:0"></span></div>
+                        <div class="anim-combo-dot-column" style="--c:10"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span><span class="anim-combo-dot" style="--r:2"></span></div>
+                        <div class="anim-combo-dot-column" style="--c:11"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span><span class="anim-combo-dot" style="--r:2"></span><span class="anim-combo-dot" style="--r:3"></span></div>
+                        <div class="anim-combo-dot-column" style="--c:12"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="text-align:right;color:#9c9c9d;font-size:16px;line-height:22.4px;margin-bottom:8px;">● 3 агента онлайн</div>
+              <div class="integrations-list">
+                <div class="integration-item"><span>Wildberries</span><span>синхронизирован</span></div>
+                <div class="integration-item"><span>Ozon</span><span>синхронизирован</span></div>
+                <div class="integration-item"><span>Яндекс.Маркет</span><span>синхронизирован</span></div>
+                <div class="integration-item"><span>МойСклад/1С</span><span>синхронизирован</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="grid-row-3">
+            <div class="radar-info">
+              <h3 class="radar-info__title">Проблемы найдены<br />до того, как стали<br />убытками</h3>
+              <p class="radar-info__text">28 триггеров сканируют ваш бизнес каждый день. Кассовый разрыв, падение маржи, дефицит товаров — вы узнаете за 2-3 недели до кризиса. С конкретным планом действий.</p>
+              <button class="radar-info__btn">Все 28 триггеров</button>
+            </div>
+            <div class="radar-stage">
+              <div style="padding: 14px 0 8px; color: #9c9c9d; font-size: 16px; line-height: 22.4px;">● Сканирование 24/7</div>
+              <div class="anim-radar" data-anim-radar>
+                <div class="anim-radar__sweep" aria-hidden="true"></div>
+                <svg class="anim-radar__grid" viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true">
+                  <circle cx="300" cy="300" r="100" class="anim-radar__grid-line" />
+                  <circle cx="300" cy="300" r="200" class="anim-radar__grid-line" />
+                  <circle cx="300" cy="300" r="299" class="anim-radar__grid-border" />
+                  <line x1="300" y1="300" x2="40.2" y2="150" class="anim-radar__grid-line" />
+                  <line x1="300" y1="300" x2="150" y2="40.2" class="anim-radar__grid-line" />
+                  <line x1="300" y1="300" x2="300" y2="0" class="anim-radar__grid-line" />
+                  <line x1="300" y1="300" x2="450" y2="40.2" class="anim-radar__grid-line" />
+                  <line x1="300" y1="300" x2="559.8" y2="150" class="anim-radar__grid-line" />
+                </svg>
+                <div class="anim-radar__point" style="--color: #34d399; --size: 20px; left: 50%; bottom: 25%;"><span class="anim-radar__label">[норма]</span></div>
+                <div class="anim-radar__point" style="--color: #fde047; --size: 10px; left: 28%; bottom: 45%;"><span class="anim-radar__label">[внимание]</span></div>
+                <div class="anim-radar__point" style="--color: #f87171; --size: 14px; left: 82%; bottom: 30%;"><span class="anim-radar__label">[критично]</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="dark-section">
+        <div class="container">
+          <div class="grid-row-4">
+            <div class="dark-col">
+              <h3>Ваша команда<br />работает<br />эффективнее</h3>
+              <p>Иван Иванович видит каждого<br />сотрудника: КРI, нагрузку,<br />просрочки. Готовит брифинг<br />к встрече за 10 секунд.<br />Вы приходите подготовленным - <br />команда это чувствует.</p>
+            </div>
+            <div class="dark-col">
+              <div class="dark-col__label">Эффективность команды</div>
+              <div class="eff-value">85%</div>
+              <div class="eff-strip">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="is-off"></span><span class="is-off"></span><span class="is-off"></span>
+              </div>
+              <div class="eff-bottom-wrap">
+                <div class="eff-bottom-title">Команда в форме!</div>
+                <div class="eff-bottom-text">2 сотрудника требуют внимания</div>
+              </div>
+            </div>
+            <div class="dark-col">
+              <div class="dark-col__label">Рейтинг сотрудников</div>
+              <div class="employee-list">
+                <div class="employee-item"><span>1 Дмитрий С. В.</span><span>Логистика</span></div>
+                <div class="employee-item"><span>2 Марина К. В.</span><span>Ozon</span></div>
+                <div class="employee-item"><span>3 Елена П. В.</span><span>Контент</span></div>
+                <div class="employee-item is-dim"><span>4 Олег Н. В.</span><span>Закупки</span></div>
+                <div class="employee-item is-dim"><span>5 Антон Б. Б.</span><span>Маркетинг</span></div>
+                <div class="employee-item is-dim"><span>6 Сергей Д. М.</span><span>WB</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="ai-banner">
+            <div>
+              <div class="ai-banner-kicker">ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ</div>
+              <h1>ИИ, который знает ваш<br />бизнес и весь рынок</h1>
+            </div>
+            <div class="ai-banner-footer">
+              <button class="btn-dark-primary">Начать бесплатно</button>
+              <div class="ai-banner-text">Чем дольше вы работаете с Иваном Ивановичем,<br />тем точнее его советы. Он учится на ваших данных<br />и опыте тысяч селлеров одновременно.</div>
+            </div>
+          </div>
+          <div class="dark-row-2col">
+            <div class="dark-box">
+              <div class="dark-box-title">ЗНАЕТ ВАШ БИЗНЕС</div>
+              <h2>Через месяц — точнее наёмного директора</h2>
+            </div>
+            <div class="dark-box dark-box--media dark-box--voice">
+              <div class="anim-voice" data-anim-voice>
+                <div class="anim-voice__card">
+                  <div class="anim-voice__wave-wrap">
+                    <div class="anim-voice__wave"></div>
+                    <div class="anim-voice__fade" aria-hidden="true"></div>
+                  </div>
+                  <div class="anim-voice__text">
+                    <p>Запоминает сезонность, маржу, стиль ваших решений.</p>
+                    <p>Каждую неделю рекомендации становятся персональнее.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dark-row-2col">
+            <div class="dark-box">
+              <div class="dark-box-title">ВИДИТ ВЕСЬ РЫНОК</div>
+              <h2>Инсайты, которых нет ни у одного консультанта</h2>
+              <p>Анонимные паттерны тысяч селлеров превращаются в конкретные рекомендации для вашего бизнеса.</p>
+            </div>
+            <div class="dark-box dark-box--media dark-box--globe">
+              <div class="anim-globe" data-anim-globe>
+                <canvas class="anim-globe__canvas" aria-hidden="true"></canvas>
+                <div class="anim-globe__atmosphere" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="secicon-row">
+            <div class="secicon-item">
+              <img src="img/secicon/Vector.svg" alt="" />
+              <div class="secicon-title">Персональные пороги</div>
+              <div class="secicon-text">Триггеры на вашу маржу,<br />ДРР и остаткиу</div>
+            </div>
+            <div class="secicon-item">
+              <img src="img/secicon/Vector-3.svg" alt="" />
+              <div class="secicon-title">Прогноз сезонности</div>
+              <div class="secicon-text">Предвидит пики на основе<br />12 месяцев данных</div>
+            </div>
+            <div class="secicon-item">
+              <img src="img/secicon/Vector-1.svg" alt="" />
+              <div class="secicon-title">100% деперсонализация</div>
+              <div class="secicon-text">Имена и артикулы отрезаются,<br />только матмодель</div>
+            </div>
+            <div class="secicon-item">
+              <img src="img/secicon/Vector-2.svg" alt="" />
+              <div class="secicon-title">Бенчмарки ниши</div>
+              <div class="secicon-text">Маржа, ДРР, оборачиваемость<br />по вашей категории</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script>
+      (function () {
+        document.addEventListener("DOMContentLoaded", () => {
+          const btn = document.querySelector("[data-combo-replay]");
+          const wrap = btn?.closest(".anim-split__demo");
+          const chart = wrap?.querySelector(".anim-combo-chart");
+          if (!btn || !chart) return;
+          const svg = chart.querySelector(".anim-combo-chart__svg");
+          const dots = chart.querySelectorAll(".anim-combo-dot");
+          if (!svg) return;
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            btn.disabled = true;
+            btn.setAttribute("title", "Анимация отключена настройкой «меньше движения»");
+            return;
+          }
+          btn.addEventListener("click", () => {
+            const nodes = [svg, ...svg.querySelectorAll(".anim-combo-chart__area, .anim-combo-chart__line"), ...dots];
+            nodes.forEach((el) => { if (el) el.style.animation = "none"; });
+            void svg.getBoundingClientRect();
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                nodes.forEach((el) => { if (el) el.style.removeProperty("animation"); });
+              });
+            });
+          });
+        });
+      })();
+      (function () {
+        document.addEventListener("DOMContentLoaded", () => {
+          document.querySelectorAll("[data-anim-radar]").forEach((root) => {
+            const sweep = root.querySelector(".anim-radar__sweep");
+            const points = root.querySelectorAll(".anim-radar__point");
+            if (!sweep || !points.length) return;
+            const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (reduced) {
+              root.classList.add("anim-radar--reduced");
+              sweep.style.transform = "translate(-50%, -50%) rotate(32deg)";
+              return;
+            }
+            function calculateAngles() {
+              const rect = root.getBoundingClientRect();
+              const centerX = rect.left + rect.width / 2;
+              const centerY = rect.bottom;
+              points.forEach((point) => {
+                const pRect = point.getBoundingClientRect();
+                const px = pRect.left + pRect.width / 2;
+                const py = pRect.top + pRect.height / 2;
+                const angleRad = Math.atan2(py - centerY, px - centerX);
+                let angleDeg = angleRad * (180 / Math.PI);
+                let cssAngle = angleDeg + 90;
+                if (cssAngle < 0) cssAngle += 360;
+                point.dataset.angle = String(cssAngle);
+              });
+            }
+            calculateAngles();
+            window.addEventListener("resize", calculateAngles);
+            let startTime = null;
+            const scanDuration = 4000;
+            const beamWidth = 60;
+            function animateRadar(time) {
+              if (!startTime) startTime = time;
+              const elapsed = time - startTime;
+              const progress = (elapsed % scanDuration) / scanDuration;
+              const currentAngle = progress * 360;
+              sweep.style.transform = `translate(-50%, -50%) rotate(${currentAngle}deg)`;
+              points.forEach((point) => {
+                const targetAngle = parseFloat(point.dataset.angle) || 0;
+                let diff = currentAngle - targetAngle;
+                if (diff < -180) diff += 360;
+                if (diff > 180) diff -= 360;
+                if (diff >= 0 && diff <= beamWidth) point.classList.add("anim-radar__point--scanned");
+                else point.classList.remove("anim-radar__point--scanned");
+              });
+              requestAnimationFrame(animateRadar);
+            }
+            requestAnimationFrame(animateRadar);
+          });
+        });
+      })();
+      (function () {
+        document.addEventListener("DOMContentLoaded", () => {
+          document.querySelectorAll("[data-anim-voice]").forEach((root) => {
+            const wave = root.querySelector(".anim-voice__wave");
+            if (!wave) return;
+            const BAR_COUNT = 45;
+            const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            wave.replaceChildren();
+            for (let i = 0; i < BAR_COUNT; i++) {
+              const bar = document.createElement("div");
+              bar.className = "anim-voice__bar";
+              wave.appendChild(bar);
+            }
+            const bars = root.querySelectorAll(".anim-voice__bar");
+            let time = 0;
+            if (reduced) {
+              bars.forEach((bar) => { bar.style.height = "8px"; });
+              return;
+            }
+            function tick() {
+              time += 0.03;
+              bars.forEach((bar, index) => {
+                const centerIndex = BAR_COUNT / 2;
+                const distFromCenter = Math.abs(index - centerIndex);
+                const activityFactor = Math.exp(-(distFromCenter * distFromCenter) / 40);
+                const baseHeight = 6 + 18 * activityFactor;
+                const wave1 = Math.sin(time + index * 0.4);
+                const wave2 = Math.cos(time * 0.7 + index * 0.2);
+                const animHeight = 12 * activityFactor * ((wave1 + wave2) / 2);
+                bar.style.height = `${Math.max(6, baseHeight + animHeight)}px`;
+              });
+              requestAnimationFrame(tick);
+            }
+            tick();
+          });
+        });
+      })();
+      (function () {
+        document.addEventListener("DOMContentLoaded", () => {
+          document.querySelectorAll("[data-anim-globe]").forEach((root) => {
+            const canvas = root.querySelector(".anim-globe__canvas");
+            if (!canvas || !canvas.getContext) return;
+            const ctx = canvas.getContext("2d");
+            let bw; let bh; let cx; let cy; let radius;
+            const dots = []; const hotspots = [];
+            const DOT_DENSITY = 0.028;
+            const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            function isLand(lat, lon) {
+              const n = Math.sin(lat * 5.5) * Math.cos(lon * 4) + Math.sin(lat * 2.5 - lon * 3) * 0.8 + Math.cos(lon * 7) * 0.3;
+              return n > 0.1;
+            }
+            function spawnHotspot(existingHotspot = null) {
+              const greenDots = dots.filter((d) => d.isGreen && d.z > 0 && d.y < 0);
+              if (!greenDots.length) return;
+              const target = greenDots[Math.floor(Math.random() * greenDots.length)];
+              const glowR = radius * (0.1 + Math.random() * 0.08);
+              const newSpot = { targetX: target.x, targetY: target.y, targetZ: target.z, life: 0, maxLife: Math.random() * 150 + 100, radius: glowR };
+              if (existingHotspot) Object.assign(existingHotspot, newSpot); else hotspots.push(newSpot);
+            }
+            function initDots() {
+              dots.length = 0; hotspots.length = 0;
+              for (let lat = 0; lat <= Math.PI; lat += DOT_DENSITY) {
+                for (let lon = 0; lon <= Math.PI * 2; lon += DOT_DENSITY) {
+                  if (!isLand(lat, lon)) continue;
+                  const x = radius * Math.sin(lat) * Math.cos(lon);
+                  const y = radius * Math.cos(lat);
+                  const z = radius * Math.sin(lat) * Math.sin(lon);
+                  const tilt = -0.4;
+                  const rotY = y * Math.cos(tilt) - z * Math.sin(tilt);
+                  const rotZ = z * Math.cos(tilt) + y * Math.sin(tilt);
+                  if (rotZ > -radius * 0.5) {
+                    const isGreen = Math.random() > 0.88;
+                    dots.push({ x, y: rotY, z: rotZ, isGreen, sizeMod: isGreen ? Math.random() * 1.5 + 0.5 : Math.random() * 0.5 + 0.8 });
+                  }
+                }
+              }
+              for (let i = 0; i < 4; i++) spawnHotspot();
+            }
+            let time = 0; let rafId = 0;
+            function layout() {
+              const rect = root.getBoundingClientRect();
+              const dpr = Math.min(window.devicePixelRatio || 1, 2);
+              bw = Math.max(1, Math.floor(rect.width * dpr));
+              bh = Math.max(1, Math.floor(rect.height * dpr));
+              canvas.width = bw; canvas.height = bh;
+              canvas.style.width = `${rect.width}px`; canvas.style.height = `${rect.height}px`;
+              const minDim = Math.min(rect.width, rect.height) * dpr;
+              cx = bw * 0.58; cy = bh * 1.22; radius = minDim * 0.9;
+              initDots();
+            }
+            function draw() {
+              ctx.clearRect(0, 0, bw, bh);
+              if (!reduced) time += 0.0015;
+              hotspots.forEach((spot) => {
+                const cosT = Math.cos(time); const sinT = Math.sin(time);
+                const hx = spot.targetX * cosT - spot.targetZ * sinT;
+                const hy = spot.targetY;
+                const hz = spot.targetZ * cosT + spot.targetX * sinT;
+                if (hz > -100) {
+                  const screenX = cx + hx; const screenY = cy + hy;
+                  const alpha = Math.sin((spot.life / spot.maxLife) * Math.PI) * 0.35;
+                  const gradient = ctx.createRadialGradient(screenX, screenY, 0, screenX, screenY, spot.radius);
+                  gradient.addColorStop(0, `rgba(52, 211, 153, ${alpha})`);
+                  gradient.addColorStop(1, "rgba(52, 211, 153, 0)");
+                  ctx.fillStyle = gradient;
+                  ctx.beginPath(); ctx.arc(screenX, screenY, spot.radius, 0, Math.PI * 2); ctx.fill();
+                }
+                spot.life++; if (spot.life >= spot.maxLife) spawnHotspot(spot);
+              });
+              for (let i = 0; i < dots.length; i++) {
+                const dot = dots[i];
+                const cosT = Math.cos(time); const sinT = Math.sin(time);
+                const rotX = dot.x * cosT - dot.z * sinT;
+                const rotZ = dot.z * cosT + dot.x * sinT;
+                if (rotZ > -radius * 0.1) {
+                  const perspective = (radius + rotZ) / (radius * 1.5);
+                  const screenX = cx + rotX; const screenY = cy + dot.y;
+                  const size = 1.5 * perspective * dot.sizeMod;
+                  ctx.fillStyle = dot.isGreen ? `rgba(52, 211, 153, ${0.4 + perspective * 0.6})` : `rgba(60, 50, 90, ${0.2 + perspective * 0.5})`;
+                  ctx.beginPath(); ctx.ellipse(screenX, screenY, size * 1.5, size, 0, 0, Math.PI * 2); ctx.fill();
+                }
+              }
+              rafId = requestAnimationFrame(draw);
+            }
+            function start() { cancelAnimationFrame(rafId); layout(); rafId = requestAnimationFrame(draw); }
+            const ro = new ResizeObserver(() => start());
+            ro.observe(root);
+            start();
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

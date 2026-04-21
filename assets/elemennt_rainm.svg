@@ -1,0 +1,25 @@
+<svg width="36" height="88" viewBox="0 0 36 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style><![CDATA[
+.rain-cell {
+  animation: rain-spark 1.25s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  opacity: 0.22;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.rain-d0 { animation-delay: 0.52s; }
+.rain-d1 { animation-delay: 0.39s; }
+.rain-d2 { animation-delay: 0.26s; }
+.rain-d3 { animation-delay: 0.13s; }
+.rain-d4 { animation-delay: 0s; }
+@keyframes rain-spark {
+  0%, 52%, 100% { opacity: 0.22; transform: scale(0.94); }
+  26% { opacity: 0.95; transform: scale(1.1); }
+  40% { opacity: 0.22; transform: scale(0.94); }
+}
+]]></style>
+<g class="rain-cell rain-d0"><circle cx="18" cy="84" r="1.8" fill="#47A4FF"/></g>
+<g class="rain-cell rain-d1"><circle cx="18" cy="64" r="1.8" fill="#47A4FF"/></g>
+<g class="rain-cell rain-d2"><circle cx="18" cy="44" r="1.8" fill="#47A4FF"/></g>
+<g class="rain-cell rain-d3"><circle cx="18" cy="24" r="1.8" fill="#47A4FF"/></g>
+<g class="rain-cell rain-d4"><circle cx="18" cy="4" r="1.8" fill="#47A4FF"/></g>
+</svg>
