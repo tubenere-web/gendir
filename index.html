@@ -231,17 +231,17 @@
           <p class="top-intro">КОМАНДА ИИ АГЕНТОВ</p>
 
           <div class="left-column">
-            <div class="lead-box">
-              <h1 class="lead-heading" data-agent-content="analyst">АНАЛИТИК&nbsp;—<br />мозг, который<br />считает всё</h1>
-              <h1 class="lead-heading" data-agent-content="assistant" hidden>АССИСТЕНТ&nbsp;—<br />руки, которые<br />делают</h1>
+            <div class="lead-box lead-box--switcher">
+              <button type="button" class="agent-switcher" data-agent-tab="analyst" aria-label="Показать Аналитика">
+                01 Аналитик&nbsp;—<br />мозг, который<br />считает всё
+              </button>
+              <button type="button" class="agent-detail-btn">Подробнее</button>
             </div>
             <div class="about-box about-box--switcher">
-              <button type="button" class="agent-switcher" data-agent-content="analyst" data-agent-tab="assistant" aria-label="Переключить на Ассистента">
-                АССИСТЕНТ&nbsp;—<br />руки, которые<br />делают
+              <button type="button" class="agent-switcher" data-agent-tab="assistant" aria-label="Показать Ассистента">
+                02 Ассистент&nbsp;—<br />руки, которые<br />делают
               </button>
-              <button type="button" class="agent-switcher" data-agent-content="assistant" data-agent-tab="analyst" hidden aria-label="Переключить на Аналитика">
-                АНАЛИТИК&nbsp;—<br />мозг, который<br />считает всё
-              </button>
+              <button type="button" class="agent-detail-btn">Подробнее</button>
             </div>
           </div>
 
@@ -660,20 +660,6 @@
 
     <footer class="site-footer">
       <div class="site-footer__brand">
-        <svg class="site-footer__logo-mark" xmlns="http://www.w3.org/2000/svg" width="71" height="71" viewBox="0 0 71 71" fill="none" aria-hidden="true">
-          <path
-            d="M29.316 1.71875H41.122C46.1737 1.71875 49.8925 1.72015 52.8321 1.96004C55.757 2.19923 57.8069 2.66923 59.5393 3.55187C62.7028 5.16396 65.2748 7.73611 66.8866 10.8997C67.7685 12.6314 68.2392 14.6813 68.4777 17.6069C68.7183 20.5451 68.719 24.2652 68.719 29.3162V41.122C68.719 46.1737 68.7183 49.8924 68.4777 52.832C68.2392 55.7568 67.7685 57.8068 66.8866 59.5392C65.2744 62.7026 62.7023 65.2745 59.5386 66.8863C57.8069 67.7683 55.757 68.239 52.8314 68.4775C49.8932 68.718 46.1737 68.7187 41.122 68.7187H29.316C24.2642 68.7187 20.5455 68.718 17.6059 68.4775C14.681 68.239 12.6311 67.7683 10.8987 66.8863C7.73544 65.2741 5.16375 62.702 3.55213 59.5385C2.66948 57.8068 2.19948 55.7568 1.96029 52.8313C1.72039 49.8931 1.71899 46.1737 1.71899 41.122V29.3162C1.71899 24.2645 1.72039 20.5458 1.96029 17.6069C2.19948 14.6813 2.66948 12.6314 3.55213 10.8997C5.16394 7.73611 7.73588 5.16396 10.8994 3.55187C12.6311 2.66923 14.681 2.19923 17.6066 1.96004C20.5448 1.72015 24.2649 1.71875 29.316 1.71875Z"
-            stroke="url(#footerLogoStroke)"
-            stroke-opacity="0.08"
-            stroke-width="3.43802"
-          />
-          <defs>
-            <linearGradient id="footerLogoStroke" x1="35.219" y1="0.560551" x2="35.219" y2="69.8776" gradientUnits="userSpaceOnUse">
-              <stop stop-color="white" />
-              <stop offset="1" stop-color="white" stop-opacity="0.15" />
-            </linearGradient>
-          </defs>
-        </svg>
         <div class="site-footer__logo-text">Гендир</div>
       </div>
       <div class="site-footer__links">
@@ -692,6 +678,7 @@
       </div>
     </footer>
     </main>
+    <div class="cursor-glow" aria-hidden="true"></div>
     <script src="script.js"></script>
   </body>
 </html>

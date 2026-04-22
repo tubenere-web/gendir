@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Блок 1 в 1</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Sometype+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <style>
-      :root { --bg-light: #0a0a0f; --bg-dark: #0a0b0d; --container-width: 1204px; --text-dark: #f5f5f5; --text-gray: #86868b; --green: #2ecc71; --border-color: #2a2a2f; }
+      :root { --container-width: 1204px; --text-dark: #f5f5f5; --text-gray: #86868b; --green: #2ecc71; --border-color: #2a2a2f; }
       * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-      body { background-color: var(--bg-light); color: var(--text-dark); -webkit-font-smoothing: antialiased; }
+      body { background-color: transparent; color: var(--text-dark); -webkit-font-smoothing: antialiased; }
       .wrapper { width: 100%; max-width: 1920px; margin: 0 auto; overflow: hidden; }
       .container { width: var(--container-width); margin: 0 auto; position: relative; }
-      .light-section { padding-top: 60px; background-color: var(--bg-light); }
+      .light-section { padding-top: 60px; background-color: transparent; }
       .subtitle-top { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: #929292; margin-bottom: 20px; font-weight: 700; }
       .intro-top {
         width: 1204px;
@@ -32,31 +33,85 @@
       }
       .quote-box {
         width: 816px;
-        height: 163px;
-        border: 0.5px solid #d9d9d9;
+        min-height: 163px;
+        border: 0.2px solid #d9d9d981;
         opacity: 0.9;
         background: transparent;
         box-shadow: 0 0 10.7px 0 rgba(255, 255, 255, 0.25);
-        padding: 24px;
+        padding: 28px 40px;
         position: relative;
+        display: flex;
+        align-items: center;
       }
-      .quote-mark { width: 16.32px; height: 13.824px; margin-bottom: 18px; }
+      .quote-mark {
+        width: 24px;
+        height: auto;
+        opacity: 0.95;
+        pointer-events: none;
+        flex-shrink: 0;
+      }
+      .quote-mark--open {
+        position: absolute;
+        bottom: 18px;
+        left: 22px;
+        transform: rotate(180deg);
+      }
+      .quote-text-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+       
+      }
+      .quote-text-row .quote-mark--close {
+        align-self: flex-start;
+        margin-top: 2px;
+      }
+      .quote-content {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+      }
+      .quote-avatar {
+        flex: 0 0 64px;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: #1a1d22;
+        border: 0.5px solid rgba(255, 255, 255, 0.25);
+      }
+      .quote-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(2);
+        transform-origin: center;
+      }
+      .quote-body {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 0;
+      }
       .quote-text {
         color: #fff;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
         line-height: 22.4px;
+        margin: 0;
       }
       .quote-author {
-        position: absolute;
-        right: 24px;
-        bottom: 18px;
+        align-self: flex-end;
         color: #fff;
         font-size: 16px;
         font-style: italic;
         font-weight: 200;
-        line-height: 35px;
+        line-height: 1.2;
+        margin: 0;
       }
       .grid-row-1 {
         margin-top: 40px;
@@ -187,6 +242,31 @@
       .anim-ebitda-card__chart path:nth-of-type(7) { animation-delay: 0.42s; }
       .anim-ebitda-card__chart path:nth-of-type(8) { animation-delay: 0.48s; }
       .anim-ebitda-card__chart path:nth-of-type(9) { animation-delay: 0.54s; }
+      .anim-ebitda-card__chart path:nth-of-type(8),
+      .anim-ebitda-card__chart path:nth-of-type(9) {
+        animation:
+          anim-ebitda-chart-rise 1.08s cubic-bezier(0.33, 1, 0.68, 1) forwards,
+          anim-ebitda-chart-flicker 1s ease-in-out infinite;
+        transform-origin: bottom;
+      }
+      .anim-ebitda-card__chart path:nth-of-type(8) {
+        animation-delay: 0.48s, 1.56s;
+        fill: #8a8a8e;
+      }
+      .anim-ebitda-card__chart path:nth-of-type(9) {
+        animation-delay: 0.54s, 1.8s;
+        fill: #8a8a8e;
+      }
+      @keyframes anim-ebitda-chart-flicker {
+        0%, 100% {
+          opacity: 1;
+          filter: drop-shadow(0 0 3px rgba(200, 200, 200, 0.35)) drop-shadow(0 0 8px rgba(200, 200, 200, 0.18));
+        }
+        50% {
+          opacity: 0.25;
+          filter: drop-shadow(0 0 10px rgba(220, 220, 220, 0.55)) drop-shadow(0 0 22px rgba(200, 200, 200, 0.3));
+        }
+      }
       @keyframes anim-ebitda-chart-rise {
         from { transform: scaleY(0); }
         to { transform: scaleY(1); }
@@ -240,6 +320,55 @@
         margin-top: auto;
         margin-bottom: auto;
         padding: 8px 0;
+      }
+      .privacy-visual-host {
+        position: relative;
+        flex: 1 1 auto;
+        min-height: 260px;
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+      .PrivacyVisual_privacyVisual__cSfiZ {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        inline-size: 100%;
+        block-size: 100%;
+        container-type: size;
+      }
+      .PrivacyVisual_privacyGrid__Pnjg_ {
+        display: flex;
+        flex-direction: column;
+        gap: 1cqmin;
+        font-weight: 500;
+        font-size: 9cqmin;
+        font-family: "Sometype Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        letter-spacing: 0.1em;
+        -webkit-mask-image: radial-gradient(ellipse 60% 60% at center, #000 30%, transparent 70%);
+        mask-image: radial-gradient(ellipse 60% 60% at center, #000 30%, transparent 70%);
+      }
+      .PrivacyVisual_privacyRow__E0cxl {
+        display: flex;
+        gap: 1cqmin;
+        justify-content: center;
+      }
+      .PrivacyVisual_privacyRow__E0cxl span {
+        inline-size: 1ch;
+        color: #333;
+        text-align: center;
+        transition: color 0.2s ease, text-shadow 0.2s ease;
+      }
+      .PrivacyVisual_privacyRow__E0cxl .PrivacyVisual_highlight__SWmNr {
+        color: #42cc77;
+        text-shadow: 0 0 10px rgba(66, 204, 119, 0.4);
+      }
+      .PrivacyVisual_privateRow__pkaNy .PrivacyVisual_highlight__SWmNr {
+        text-shadow:
+          0 0 10px #42cc77,
+          0 0 20px #42cc77,
+          0 0 40px rgba(66, 204, 119, 0.6),
+          0 0 60px rgba(66, 204, 119, 0.4);
       }
       .anim-metrics__matrix {
         margin: 0;
@@ -393,8 +522,104 @@
         from { opacity: 0; transform: scale(0.94); }
         to { opacity: 1; transform: scale(1); }
       }
+      @property --gauge-progress {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+      .SyncVisual_syncVisual__pz6oN {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
+        inline-size: 100%;
+        block-size: 100%;
+        container-type: size;
+      }
+      .SyncVisual_syncContainer__fmsnN {
+        position: relative;
+        inline-size: 72%;
+      }
+      .SyncVisual_syncMultipleOutline__FGYwv,
+      .SyncVisual_syncOutline__fqnMF {
+        position: absolute;
+        inset-inline-start: 50%;
+        inset-block-start: 50%;
+        display: block;
+        inline-size: 80%;
+        block-size: auto;
+        transform: translate(-50%, -50%);
+      }
+      .SyncVisual_syncMultipleOutline__FGYwv { opacity: 0.5; }
+      .SyncVisual_syncInline__cPQ9A {
+        inset-block-start: 50.4%;
+        display: block;
+        inline-size: 54%;
+        block-size: auto;
+      }
+      .SyncVisual_syncInline__cPQ9A,
+      .SyncVisual_syncStats__E6Bdb {
+        position: absolute;
+        inset-inline-start: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .SyncVisual_syncStats__E6Bdb {
+        inset-block-start: 55%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .SyncVisual_syncNumber__e74IZ {
+        color: #fff;
+        font-size: 16cqmin;
+      }
+      .SyncVisual_syncLabel__H_WYT,
+      .SyncVisual_syncNumber__e74IZ {
+        font-weight: 500;
+        font-family: "Sometype Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        letter-spacing: -0.02em;
+      }
+      .SyncVisual_syncLabel__H_WYT {
+        position: relative;
+        inset-block-start: -1cqmin;
+        color: #555;
+        font-size: 6.5cqmin;
+      }
+      .SyncVisual_syncBase__ovy1Y {
+        display: block;
+        inline-size: 100%;
+        block-size: auto;
+      }
+      .SyncVisual_syncFill__9Yfe1,
+      .SyncVisual_syncGlow__Ut5nb {
+        --gauge-progress: 0deg;
+        position: absolute;
+        inset: 0;
+        -webkit-mask-image: conic-gradient(from 180deg at 50% 53%, #000 var(--gauge-progress), transparent var(--gauge-progress));
+        mask-image: conic-gradient(from 180deg at 50% 53%, #000 var(--gauge-progress), transparent var(--gauge-progress));
+      }
+      .SyncVisual_syncGlow__Ut5nb {
+        opacity: 1;
+        filter: blur(1px);
+      }
+      .SyncVisual_syncVisual__pz6oN.SyncVisual_inView__3jK1K .SyncVisual_syncFill__9Yfe1,
+      .SyncVisual_syncVisual__pz6oN.SyncVisual_inView__3jK1K .SyncVisual_syncGlow__Ut5nb {
+        animation: SyncVisual_fillUp__oAC7n 2.5s ease-out 1s forwards;
+      }
+      .SyncVisual_syncGreen__CAqW3 {
+        display: block;
+        inline-size: 100%;
+        block-size: auto;
+        filter: brightness(0) saturate(100%) invert(67%) sepia(52%) saturate(531%) hue-rotate(93deg) brightness(92%) contrast(87%);
+      }
+      @keyframes SyncVisual_fillUp__oAC7n {
+        0% { --gauge-progress: 0deg; }
+        to { --gauge-progress: 280deg; }
+      }
       @media (prefers-reduced-motion: reduce) {
         .anim-ebitda-card__chart path { animation: none; transform: scaleY(1); }
+        .anim-ebitda-card__chart path:nth-of-type(8),
+        .anim-ebitda-card__chart path:nth-of-type(9) { animation: none; opacity: 1; filter: none; }
         .anim-ebitda-card__arrow { animation: none; }
         .anim-metrics__num {
           animation: none;
@@ -411,6 +636,11 @@
         .anim-kpi-ring--track { animation: none; stroke-dasharray: 75 100; }
         .anim-kpi-ring--outer { animation: none; opacity: 1; }
         .anim-kpi-card__center-val { animation: none; }
+        .SyncVisual_syncVisual__pz6oN.SyncVisual_inView__3jK1K .SyncVisual_syncFill__9Yfe1,
+        .SyncVisual_syncVisual__pz6oN.SyncVisual_inView__3jK1K .SyncVisual_syncGlow__Ut5nb {
+          animation: none;
+          --gauge-progress: 280deg;
+        }
       }
       .grid-row-2 { display: grid; grid-template-columns: 365px 1fr; gap: 40px; margin-top: 40px; margin-bottom: 20px; }
       .integration-box {
@@ -471,6 +701,51 @@
         max-width: 100%;
         height: clamp(120px, 28vw, 168px);
         min-height: 120px;
+      }
+      .dot-chart-wrapper {
+        position: relative;
+        inline-size: 100%;
+        block-size: clamp(120px, 28vw, 168px);
+        min-block-size: 120px;
+      }
+      .dot-chart {
+        display: flex;
+        gap: 8px;
+        align-items: flex-end;
+        overflow: hidden;
+        block-size: 100%;
+        padding-inline-end: 8px;
+      }
+      .dot-col {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+      }
+      .dot-col span {
+        inline-size: 8px;
+        block-size: 8px;
+        border-radius: 50%;
+        background: #fff;
+      }
+      .dot-chart .dot-col {
+        animation: dot-col-slide 0.45s ease-out both;
+      }
+      @keyframes dot-col-slide {
+        from { opacity: 0; transform: translateX(-6px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      .line-chart {
+        position: absolute;
+        inset-inline-start: 0;
+        inset-block-start: 0;
+        inline-size: 100%;
+        block-size: 100%;
+        pointer-events: none;
+      }
+      .line-chart-path {
+        filter: drop-shadow(0 0 5px rgba(66, 204, 119, 0.55)) drop-shadow(0 0 12px rgba(66, 204, 119, 0.22));
       }
       .anim-combo-chart__svg {
         position: absolute;
@@ -719,7 +994,12 @@
       }
       .anim-radar__point--scanned::before { opacity: 0; transition: opacity 0.1s ease; }
       .anim-radar--reduced .anim-radar__point::before { animation: none; opacity: 0; }
-      .dark-section { background-color: var(--bg-dark); color: #fff; padding-top: 40px; padding-bottom: 80px; }
+      .dark-section {
+        
+        color: #fff;
+        padding-top: 40px;
+        padding-bottom: 80px;
+      }
       .grid-row-4 {
         height: 424px;
         display: grid;
@@ -778,8 +1058,12 @@
         width: 12px;
         height: 12px;
         background: #2ecc71;
+        transition: background-color 900ms ease, box-shadow 900ms ease;
       }
-      .eff-strip span.is-off { background: #3d3d3d; }
+      .eff-strip span.is-off {
+        background: #3d3d3d;
+        box-shadow: none;
+      }
       .eff-bottom-title {
         color: #fff;
         font-family: Inter, sans-serif;
@@ -817,8 +1101,39 @@
         font-style: normal;
         font-weight: 400;
         line-height: 24px;
+        transition: opacity 600ms ease, border-color 600ms ease;
+        animation: employee-breathe 5.2s ease-in-out infinite;
       }
-      .employee-item.is-dim { opacity: 0.35; }
+      .employee-item:nth-child(1) { animation-delay: 0s; }
+      .employee-item:nth-child(2) { animation-delay: 0.45s; }
+      .employee-item:nth-child(3) { animation-delay: 0.9s; }
+      .employee-item:nth-child(4) { animation-delay: 1.35s; }
+      .employee-item:nth-child(5) { animation-delay: 1.8s; }
+      .employee-item:nth-child(6) { animation-delay: 2.25s; }
+      .employee-item.is-dim {
+        opacity: 0.35;
+        animation-name: employee-breathe-dim;
+      }
+      @keyframes employee-breathe {
+        0%, 100% {
+          opacity: 1;
+          border-color: rgba(255, 255, 255, 0.45);
+        }
+        50% {
+          opacity: 0.65;
+          border-color: rgba(255, 255, 255, 0.22);
+        }
+      }
+      @keyframes employee-breathe-dim {
+        0%, 100% {
+          opacity: 0.45;
+          border-color: rgba(255, 255, 255, 0.28);
+        }
+        50% {
+          opacity: 0.18;
+          border-color: rgba(255, 255, 255, 0.12);
+        }
+      }
       .ai-banner {
         width: 1204px;
         height: 436px;
@@ -893,16 +1208,34 @@
         position: absolute;
         top: 0;
         right: 0;
-        width: 18%;
+        width: 38%;
         height: 100%;
         pointer-events: none;
         background: linear-gradient(
           90deg,
           rgba(8, 14, 30, 0) 0%,
-          rgba(8, 14, 30, 0.12) 45%,
-          rgba(8, 14, 30, 0.28) 72%,
-          rgba(8, 14, 30, 0.42) 100%
+          rgba(8, 14, 30, 0.06) 28%,
+          rgba(8, 14, 30, 0.18) 58%,
+          rgba(8, 14, 30, 0.34) 82%,
+          rgba(8, 14, 30, 0.44) 100%
         );
+        -webkit-mask-image: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.18) 28%,
+          rgba(0, 0, 0, 0.55) 55%,
+          rgba(0, 0, 0, 0.85) 80%,
+          #000 100%
+        );
+        mask-image: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.18) 28%,
+          rgba(0, 0, 0, 0.55) 55%,
+          rgba(0, 0, 0, 0.85) 80%,
+          #000 100%
+        );
+        -webkit-backdrop-filter: blur(3px);
         backdrop-filter: blur(3px);
         z-index: 3;
       }
@@ -984,11 +1317,23 @@
           <div class="intro-top">
             <h2 class="intro-title">Ваш бизнес становится<br />эффективнее каждый<br />день</h2>
             <div class="quote-box">
-              <svg class="quote-mark" xmlns="http://www.w3.org/2000/svg" width="17" height="14" viewBox="0 0 17 14" fill="none">
+              <svg class="quote-mark quote-mark--open" xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 17 14" fill="none" aria-hidden="true">
                 <path d="M15.84 0L13.536 7.488H16.32V13.824H9.984V8.208L13.056 0H15.84ZM5.856 0L3.552 7.488H6.336V13.824H0V8.208L3.072 0H5.856Z" fill="white"/>
               </svg>
-              <p class="quote-text">Через месяц вы увидите: где теряли деньги,<br />кто в команде тормозит рост, какие товары<br />сжигают бюджет. И главное - что с этим делать</p>
-              <p class="quote-author">- Алекс, основатель</p>
+              <div class="quote-content">
+                <div class="quote-avatar">
+                  <img src="img/ava.png" alt="Алекс" loading="lazy" decoding="async" />
+                </div>
+                <div class="quote-body">
+                  <div class="quote-text-row">
+                    <p class="quote-text">Через месяц вы увидите: где теряли деньги,<br />кто в команде тормозит рост, какие товары<br />сжигают бюджет. И главное - что с этим делать</p>
+                    <svg class="quote-mark quote-mark--close" xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 17 14" fill="none" aria-hidden="true">
+                      <path d="M15.84 0L13.536 7.488H16.32V13.824H9.984V8.208L13.056 0H15.84ZM5.856 0L3.552 7.488H6.336V13.824H0V8.208L3.072 0H5.856Z" fill="white"/>
+                    </svg>
+                  </div>
+                  <p class="quote-author">- Алекс, основатель</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -1032,15 +1377,20 @@
               <div class="stat-card">
                 <div class="anim-metrics">
                   <p class="anim-metrics__title">КЛЮЧЕВЫЕ МЕТРИКИ</p>
-                  <div class="anim-metrics__matrix-wrap">
-                    <p class="anim-metrics__matrix">
-                      <span class="anim-metrics__noise">q&gt;8x+mK2nF&gt;kP+aQ/</span><span class="anim-metrics__num anim-metrics__num--d1">50</span><span class="anim-metrics__noise">eV8wD2n+7J&gt;5rT1sY6</span><br />
-                      <span class="anim-metrics__noise">mK9pX3/zR+2v&gt;6bY4cF1</span><span class="anim-metrics__num anim-metrics__num--d2">70</span><span class="anim-metrics__noise">+5qP8kZ1r&gt;7wX9yH2</span><br />
-                      <span class="anim-metrics__noise">/nL2mK8+rT&gt;9wZ1jH6b</span><span class="anim-metrics__num anim-metrics__num--d3">20</span><span class="anim-metrics__noise">3xW7v+1kP&gt;8tL4nJ0</span><br />
-                      <span class="anim-metrics__noise">jH7bY3F9s&gt;6eN2aM8xW</span><span class="anim-metrics__num anim-metrics__num--d4">30</span><span class="anim-metrics__noise">+7nX5m&gt;3pV9rT1</span><br />
-                      <span class="anim-metrics__noise">zR6tJ2&gt;+9vX1wQ5</span><br />
-                      <span class="anim-metrics__noise">&gt;5yB8cF2e+kP1+qZ6/</span><span class="anim-metrics__num anim-metrics__num--d1">50</span><span class="anim-metrics__noise">8mH2jG5&gt;7sD</span>
-                    </p>
+                  <div class="privacy-visual-host">
+                    <div class="PrivacyVisual_privacyVisual__cSfiZ">
+                      <div class="PrivacyVisual_privacyGrid__Pnjg_">
+                        <div class="PrivacyVisual_privacyRow__E0cxl"><span>u</span><span>Q</span><span>9</span><span>n</span><span>i</span><span>G</span><span>m</span><span>i</span><span>9</span><span>V</span><span>g</span><span>P</span><span>a</span><span>4</span><span>H</span></div>
+                        <div class="PrivacyVisual_privacyRow__E0cxl"><span>+</span><span>e</span><span>e</span><span>P</span><span>V</span><span>F</span><span>Z</span><span>d</span><span>v</span><span>g</span><span>t</span><span>F</span><span>V</span><span>N</span><span>9</span></div>
+                        <div class="PrivacyVisual_privacyRow__E0cxl"><span>1</span><span>Q</span><span>H</span><span>4</span><span>Z</span><span>w</span><span>5</span><span>M</span><span>7</span><span>e</span><span>U</span><span>6</span><span>0</span><span>&gt;</span><span>p</span></div>
+                        <div class="PrivacyVisual_privacyRow__E0cxl"><span>z</span><span>X</span><span>x</span><span>a</span><span>a</span><span>C</span><span>h</span><span>p</span><span>/</span><span>b</span><span>w</span><span>D</span><span>T</span><span>J</span><span>0</span></div>
+                        <div class="PrivacyVisual_privacyRow__E0cxl PrivacyVisual_privateRow__pkaNy"><span>C</span><span>7</span><span>y</span><span>p</span><span class="PrivacyVisual_highlight__SWmNr">7</span><span class="PrivacyVisual_highlight__SWmNr">0</span><span class="PrivacyVisual_highlight__SWmNr">%</span><span class="PrivacyVisual_highlight__SWmNr">-</span><span class="PrivacyVisual_highlight__SWmNr">8</span><span class="PrivacyVisual_highlight__SWmNr">0</span><span class="PrivacyVisual_highlight__SWmNr">%</span><span>j</span><span>a</span><span>R</span><span>I</span></div>
+                        <div class="PrivacyVisual_privacyRow__E0cxl"><span>W</span><span>c</span><span>P</span><span>V</span><span>A</span><span>s</span><span>/</span><span>T</span><span>Q</span><span>c</span><span>o</span><span>N</span><span>?</span><span>m</span><span>a</span></div>
+                        <div class="PrivacyVisual_privacyRow__E0cxl"><span>U</span><span>L</span><span>V</span><span>H</span><span>a</span><span>8</span><span>7</span><span>N</span><span>B</span><span>G</span><span>n</span><span>B</span><span>W</span><span>3</span><span>R</span></div>
+                        <div class="PrivacyVisual_privacyRow__E0cxl"><span>h</span><span>o</span><span>a</span><span>R</span><span>O</span><span>n</span><span>s</span><span>c</span><span>x</span><span>h</span><span>U</span><span>7</span><span>r</span><span>P</span><span>&gt;</span></div>
+                        <div class="PrivacyVisual_privacyRow__E0cxl"><span>Z</span><span>g</span><span>1</span><span>n</span><span>+</span><span>Z</span><span>d</span><span>N</span><span>w</span><span>H</span><span>Z</span><span>V</span><span>H</span><span>X</span><span>1</span></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1049,25 +1399,27 @@
                   <p class="anim-kpi-card__label">ЧИСТАЯ ПРИБЫЛЬ</p>
                   <div class="anim-kpi-card__gauge">
                     <div class="anim-kpi-card__dial-wrap" aria-hidden="true">
-                      <svg class="anim-kpi-card__svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                          <mask id="anim-kpi-mask-bg" maskUnits="userSpaceOnUse">
-                            <circle cx="100" cy="100" r="75" fill="none" stroke="white" stroke-width="30" pathLength="100" stroke-dasharray="75 100" transform="rotate(135 100 100)" />
-                          </mask>
-                          <mask id="anim-kpi-mask-progress" maskUnits="userSpaceOnUse">
-                            <circle class="anim-kpi-mask-progress-ring" cx="100" cy="100" r="75" fill="none" stroke="white" stroke-width="30" pathLength="100" stroke-dasharray="0 100" transform="rotate(135 100 100)" />
-                          </mask>
-                        </defs>
-                        <circle class="anim-kpi-ring anim-kpi-ring--outer" cx="100" cy="100" r="90" fill="none" stroke="#2a2d32" stroke-width="2" stroke-dasharray="1 5" mask="url(#anim-kpi-mask-bg)" />
-                        <circle class="anim-kpi-ring anim-kpi-ring--track" cx="100" cy="100" r="62" fill="none" stroke="#1f2227" stroke-width="1.5" pathLength="100" stroke-dasharray="0 100" transform="rotate(135 100 100)" />
-                        <circle cx="100" cy="100" r="75" fill="none" stroke="#1c1f24" stroke-width="14" stroke-dasharray="4 2" mask="url(#anim-kpi-mask-bg)" />
-                        <g class="anim-kpi-green-wobble">
-                          <circle class="anim-kpi-ring anim-kpi-ring--progress-fill" cx="100" cy="100" r="75" fill="none" stroke="#349b5c" stroke-width="11" stroke-linecap="round" pathLength="100" stroke-dasharray="0 100" mask="url(#anim-kpi-mask-progress)" />
-                          <circle class="anim-kpi-ring anim-kpi-ring--progress" cx="100" cy="100" r="75" fill="none" stroke="#349b5c" stroke-width="14" stroke-dasharray="4 2" stroke-dashoffset="0" mask="url(#anim-kpi-mask-progress)" />
-                        </g>
-                      </svg>
+                      <div class="SyncVisual_syncVisual__pz6oN SyncVisual_inView__3jK1K">
+                        <img src="img/sync/outline-sync-module.svg" alt="Outline Sync Module" class="SyncVisual_syncOutline__fqnMF" loading="lazy" decoding="async">
+                        <img src="img/sync/multiple-outline-sync-module.svg" alt="Multiple Outline Sync Module" class="SyncVisual_syncMultipleOutline__FGYwv" loading="lazy" decoding="async">
+                        <svg class="SyncVisual_syncInline__cPQ9A" width="112" height="105" viewBox="0 0 112 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path opacity="0.5" d="M55.7968 0C68.0797 1.46472e-07 80.02 4.05295 89.7646 11.5303C99.5091 19.0076 106.514 29.4913 109.693 41.3555C112.872 53.2197 112.047 65.8016 107.347 77.1494C102.646 88.4973 94.3325 97.9777 83.6953 104.119L82.9453 102.819C93.2964 96.8431 101.387 87.6188 105.961 76.5762C110.535 65.5334 111.338 53.2895 108.244 41.7441C105.151 30.199 98.334 19.997 88.8515 12.7207C79.3689 5.44439 67.7495 1.5 55.7968 1.5C43.8443 1.50005 32.2257 5.44444 22.7431 12.7207C13.2605 19.997 6.44411 30.1988 3.35055 41.7441C0.256993 53.2895 1.05871 65.5334 5.63278 76.5762C10.2068 87.6188 18.2973 96.8431 28.6484 102.819L27.8984 104.119C17.2611 97.9777 8.94748 88.4973 4.24704 77.1494C-0.453278 65.8016 -1.27767 53.2197 1.90134 41.3555C5.08041 29.4913 12.0855 19.0075 21.83 11.5303C31.5746 4.05303 43.5141 4.95097e-05 55.7968 0Z" fill="#2A2A2A"></path>
+                        </svg>
+                        <div class="SyncVisual_syncContainer__fmsnN">
+                          <img src="img/sync/sync-module.svg" alt="Sync Module" class="SyncVisual_syncBase__ovy1Y" loading="lazy" decoding="async">
+                          <div class="SyncVisual_syncGlow__Ut5nb">
+                            <img src="img/sync/sync-module.svg" alt="Sync Module" class="SyncVisual_syncGreen__CAqW3" loading="lazy" decoding="async">
+                          </div>
+                          <div class="SyncVisual_syncFill__9Yfe1">
+                            <img src="img/sync/sync-module.svg" alt="Sync Module" class="SyncVisual_syncGreen__CAqW3" loading="lazy" decoding="async">
+                          </div>
+                        </div>
+                        <div class="SyncVisual_syncStats__E6Bdb">
+                          <span class="SyncVisual_syncNumber__e74IZ">2&nbsp;311</span>
+                          <span class="SyncVisual_syncLabel__H_WYT">EVENTS</span>
+                        </div>
+                      </div>
                     </div>
-                    <span class="anim-kpi-card__center-val">2,694</span>
                   </div>
                   <hr class="anim-kpi-card__rule" />
                   <p class="anim-kpi-card__delta">+18%</p>
@@ -1087,34 +1439,58 @@
               <div style="font-size:14px;color:#9c9c9d;margin-bottom:6px;">Интеграции</div>
               <div class="anim-split__demo">
                 <div class="anim-split__stage anim-split__stage--dark anim-combo-stage" aria-hidden="true">
-                  <div class="anim-combo-chart">
-                    <div class="anim-combo-chart__inner">
-                      <svg class="anim-combo-chart__svg" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true">
-                        <defs>
-                          <linearGradient id="anim-combo-area-grad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stop-color="rgba(52, 211, 153, 0.42)" />
-                            <stop offset="100%" stop-color="rgba(52, 211, 153, 0)" />
-                          </linearGradient>
-                        </defs>
-                        <path class="anim-combo-chart__area" d="M0,120 L80,105 L160,114 L240,90 L320,118 L400,106 L480,98 L560,84 L640,102 L720,78 L800,96 L880,86 L1000,110 L1000,200 L0,200 Z" fill="url(#anim-combo-area-grad)" />
-                        <path class="anim-combo-chart__line" d="M0,120 L80,105 L160,114 L240,90 L320,118 L400,106 L480,98 L560,84 L640,102 L720,78 L800,96 L880,86 L1000,110" fill="none" stroke="#34d399" stroke-width="3" pathLength="1" />
-                      </svg>
-                      <div class="anim-combo-chart__dots" aria-hidden="true">
-                        <div class="anim-combo-dot-column" style="--c:0"><span class="anim-combo-dot" style="--r:0"></span></div>
-                        <div class="anim-combo-dot-column" style="--c:1"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span></div>
-                        <div class="anim-combo-dot-column" style="--c:2"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span><span class="anim-combo-dot" style="--r:2"></span></div>
-                        <div class="anim-combo-dot-column" style="--c:3"><span class="anim-combo-dot" style="--r:0"></span></div>
-                        <div class="anim-combo-dot-column" style="--c:4"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span></div>
-                        <div class="anim-combo-dot-column" style="--c:5"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span><span class="anim-combo-dot" style="--r:2"></span></div>
-                        <div class="anim-combo-dot-column" style="--c:6"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span><span class="anim-combo-dot" style="--r:2"></span><span class="anim-combo-dot" style="--r:3"></span></div>
-                        <div class="anim-combo-dot-column" style="--c:7"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span></div>
-                        <div class="anim-combo-dot-column" style="--c:8"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span><span class="anim-combo-dot" style="--r:2"></span></div>
-                        <div class="anim-combo-dot-column" style="--c:9"><span class="anim-combo-dot" style="--r:0"></span></div>
-                        <div class="anim-combo-dot-column" style="--c:10"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span><span class="anim-combo-dot" style="--r:2"></span></div>
-                        <div class="anim-combo-dot-column" style="--c:11"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span><span class="anim-combo-dot" style="--r:2"></span><span class="anim-combo-dot" style="--r:3"></span></div>
-                        <div class="anim-combo-dot-column" style="--c:12"><span class="anim-combo-dot" style="--r:0"></span><span class="anim-combo-dot" style="--r:1"></span></div>
-                      </div>
+                  <div class="dot-chart-wrapper">
+                    <div class="dot-chart">
+                      <div class="dot-col"><span></span><span></span></div>
+                      <div class="dot-col"><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span></div>
+                      <div class="dot-col"><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                      <div class="dot-col"><span></span><span></span></div>
                     </div>
+                    <svg class="line-chart" viewBox="0 0 100 100" preserveAspectRatio="none">
+                      <defs>
+                        <linearGradient id="dot-line-chart-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stop-color="#42CC77" stop-opacity="0.3"></stop>
+                          <stop offset="100%" stop-color="#42CC77" stop-opacity="0"></stop>
+                        </linearGradient>
+                        <clipPath id="dot-line-chart-clip">
+                          <rect class="clip-rect" x="0" y="0" width="0" height="100">
+                            <animate attributeName="width" from="0" to="100" dur="2000ms" begin="indefinite" fill="freeze"></animate>
+                          </rect>
+                        </clipPath>
+                      </defs>
+                      <g clip-path="url(#dot-line-chart-clip)">
+                        <path class="line-chart-area" d="M0,70 L4,65 L8,72 L12,60 L16,55 L20,40 L24,50 L28,75 L32,68 L36,58 L40,45 L44,52 L48,35 L52,42 L56,50 L60,38 L64,55 L68,30 L72,48 L76,40 L80,60 L84,52 L88,65 L92,55 L96,50 L100,45 L100,100 L0,100 Z" fill="url(#dot-line-chart-grad)"></path>
+                        <path class="line-chart-path" d="M0,70 L4,65 L8,72 L12,60 L16,55 L20,40 L24,50 L28,75 L32,68 L36,58 L40,45 L44,52 L48,35 L52,42 L56,50 L60,38 L64,55 L68,30 L72,48 L76,40 L80,60 L84,52 L88,65 L92,55 L96,50 L100,45" fill="none" stroke="#42CC77" stroke-width="2.5" vector-effect="non-scaling-stroke"></path>
+                      </g>
+                    </svg>
                   </div>
                 </div>
               </div>
@@ -1259,27 +1635,218 @@
     <script>
       (function () {
         document.addEventListener("DOMContentLoaded", () => {
-          const btn = document.querySelector("[data-combo-replay]");
-          const wrap = btn?.closest(".anim-split__demo");
-          const chart = wrap?.querySelector(".anim-combo-chart");
-          if (!btn || !chart) return;
-          const svg = chart.querySelector(".anim-combo-chart__svg");
-          const dots = chart.querySelectorAll(".anim-combo-dot");
-          if (!svg) return;
-          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            btn.disabled = true;
-            btn.setAttribute("title", "Анимация отключена настройкой «меньше движения»");
-            return;
-          }
-          btn.addEventListener("click", () => {
-            const nodes = [svg, ...svg.querySelectorAll(".anim-combo-chart__area, .anim-combo-chart__line"), ...dots];
-            nodes.forEach((el) => { if (el) el.style.animation = "none"; });
-            void svg.getBoundingClientRect();
-            requestAnimationFrame(() => {
-              requestAnimationFrame(() => {
-                nodes.forEach((el) => { if (el) el.style.removeProperty("animation"); });
+          const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          document.querySelectorAll(".dot-chart-wrapper").forEach((wrap) => {
+            const animateEl = wrap.querySelector("svg.line-chart animate");
+            if (!animateEl) return;
+            if (reduced) {
+              const rect = wrap.querySelector(".clip-rect");
+              if (rect) rect.setAttribute("width", "100");
+              return;
+            }
+            let started = false;
+            const io = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting && !started) {
+                  started = true;
+                  try { animateEl.beginElement(); } catch (err) { /* noop */ }
+                  io.disconnect();
+                }
               });
-            });
+            }, { threshold: 0.5 });
+            io.observe(wrap);
+          });
+        });
+      })();
+      (function () {
+        const CHARSET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/>?";
+        const PRIVATE_WORD = "PRIVATE";
+        const ROWS = 9;
+        const COLS = 15;
+        const PRIVATE_ROW_INDEX = 4;
+        const PRIVATE_START = Math.floor((COLS - PRIVATE_WORD.length) / 2);
+        const HIGHLIGHT_CLASS = "PrivacyVisual_highlight__SWmNr";
+        const TICK_MS = 250;
+        const HIGHLIGHT_CHANCE = 0.05;
+        const randChar = () => CHARSET[Math.floor(Math.random() * CHARSET.length)];
+        document.addEventListener("DOMContentLoaded", () => {
+          const grids = document.querySelectorAll(".PrivacyVisual_privacyGrid__Pnjg_");
+          if (!grids.length) return;
+          const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          grids.forEach((grid) => {
+            const rows = grid.querySelectorAll(".PrivacyVisual_privacyRow__E0cxl");
+            if (reduced || !rows.length) return;
+            const tick = () => {
+              rows.forEach((row, rowIdx) => {
+                if (rowIdx === PRIVATE_ROW_INDEX) return;
+                const spans = row.querySelectorAll("span");
+                spans.forEach((sp) => {
+                  sp.textContent = randChar();
+                  sp.classList.remove(HIGHLIGHT_CLASS);
+                });
+                if (Math.random() < HIGHLIGHT_CHANCE && spans.length) {
+                  const pick = spans[Math.floor(Math.random() * spans.length)];
+                  pick.classList.add(HIGHLIGHT_CLASS);
+                }
+              });
+            };
+            tick();
+            const interval = setInterval(tick, TICK_MS);
+            window.addEventListener("beforeunload", () => clearInterval(interval), { once: true });
+          });
+        });
+      })();
+      (function () {
+        const TARGET_VALUE = 2311;
+        const COUNT_DELAY_MS = 1000;
+        const COUNT_DURATION_MS = 2500;
+        const JITTER_RANGE = 50;
+        const JITTER_LERP = 0.08;
+        const JITTER_MIN_MS = 800;
+        const JITTER_MAX_MS = 400;
+        const GAUGE_BASE_DEG = 280;
+        const GAUGE_RANGE_DEG = 5;
+        const formatNumber = (n) => Math.round(n).toLocaleString("ru-RU").replace(/,/g, " ").replace(/\u00A0/g, " ");
+        document.addEventListener("DOMContentLoaded", () => {
+          const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          document.querySelectorAll(".SyncVisual_syncVisual__pz6oN").forEach((root) => {
+            const glow = root.querySelector(".SyncVisual_syncGlow__Ut5nb");
+            const fill = root.querySelector(".SyncVisual_syncFill__9Yfe1");
+            const numberEl = root.querySelector(".SyncVisual_syncNumber__e74IZ");
+            if (!glow || !fill || !numberEl) return;
+            if (reduced) {
+              numberEl.textContent = formatNumber(TARGET_VALUE);
+              return;
+            }
+            let io = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                io.disconnect();
+                runCountUp();
+              });
+            }, { threshold: 0.3 });
+            io.observe(root);
+
+            const setGauge = (deg) => {
+              glow.style.setProperty("--gauge-progress", deg + "deg");
+              fill.style.setProperty("--gauge-progress", deg + "deg");
+            };
+
+            function runCountUp() {
+              numberEl.textContent = "0";
+              let startTs = null;
+              const step = (ts) => {
+                if (startTs === null) startTs = ts;
+                const elapsed = ts - startTs - COUNT_DELAY_MS;
+                if (elapsed < 0) { requestAnimationFrame(step); return; }
+                const p = Math.min(elapsed / COUNT_DURATION_MS, 1);
+                const eased = 1 - Math.pow(1 - p, 3);
+                const current = Math.floor(eased * TARGET_VALUE);
+                numberEl.textContent = formatNumber(current);
+                if (p < 1) {
+                  requestAnimationFrame(step);
+                } else {
+                  glow.style.animation = "none";
+                  fill.style.animation = "none";
+                  runJitter();
+                }
+              };
+              requestAnimationFrame(step);
+            }
+
+            function runJitter() {
+              let current = TARGET_VALUE;
+              let target = TARGET_VALUE;
+              let lastSwitch = performance.now();
+              let nextWindow = JITTER_MIN_MS + Math.random() * JITTER_MAX_MS;
+              const loop = (now) => {
+                if (now - lastSwitch > nextWindow) {
+                  target = Math.round(TARGET_VALUE + (Math.random() - 0.5) * JITTER_RANGE * 2);
+                  lastSwitch = now;
+                  nextWindow = JITTER_MIN_MS + Math.random() * JITTER_MAX_MS;
+                }
+                current += JITTER_LERP * (target - current);
+                numberEl.textContent = formatNumber(current);
+                const deg = GAUGE_BASE_DEG + ((current - TARGET_VALUE) / JITTER_RANGE) * GAUGE_RANGE_DEG;
+                setGauge(deg);
+                requestAnimationFrame(loop);
+              };
+              requestAnimationFrame(loop);
+            }
+          });
+        });
+      })();
+      (function () {
+        const TICK_MS = 3000;
+        const LAST_N = 3;
+        document.addEventListener("DOMContentLoaded", () => {
+          const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          document.querySelectorAll(".eff-strip").forEach((strip) => {
+            const spans = strip.querySelectorAll("span");
+            if (spans.length < LAST_N) return;
+            const targets = Array.from(spans).slice(-LAST_N);
+            if (reduced) return;
+            const roll = () => {
+              targets.forEach((sp) => {
+                if (Math.random() < 0.5) {
+                  sp.classList.add("is-off");
+                } else {
+                  sp.classList.remove("is-off");
+                }
+              });
+            };
+            setInterval(roll, TICK_MS);
+          });
+        });
+      })();
+      (function () {
+        const TICK_MS = 700;
+        const COLUMN_WIDTH = 16;
+        const MIN_DOTS = 1;
+        const MAX_DOTS = 7;
+        const INITIAL_PATTERN = [2, 1, 3, 2, 4, 6, 3, 1, 2, 3, 5, 4, 6, 5, 4, 5, 3, 7, 4, 5, 2, 3, 2, 3, 2];
+        const randomDots = () => Math.floor(Math.random() * MAX_DOTS) + MIN_DOTS;
+        const buildColumn = (count) => {
+          const col = document.createElement("div");
+          col.className = "dot-col";
+          for (let i = 0; i < count; i++) col.appendChild(document.createElement("span"));
+          return col;
+        };
+        document.addEventListener("DOMContentLoaded", () => {
+          const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          document.querySelectorAll(".dot-chart-wrapper .dot-chart").forEach((chart) => {
+            if (reduced) return;
+            const measureMax = () => Math.max(1, Math.floor(chart.offsetWidth / COLUMN_WIDTH));
+            let maxCols = measureMax();
+            chart.innerHTML = "";
+            const seed = INITIAL_PATTERN.slice(0, maxCols);
+            while (seed.length < maxCols) seed.push(randomDots());
+            seed.forEach((n) => chart.appendChild(buildColumn(n)));
+
+            if (typeof ResizeObserver !== "undefined") {
+              const ro = new ResizeObserver(() => {
+                const next = measureMax();
+                if (next === maxCols) return;
+                if (next > maxCols) {
+                  for (let i = 0; i < next - maxCols; i++) chart.appendChild(buildColumn(randomDots()));
+                } else {
+                  for (let i = 0; i < maxCols - next; i++) {
+                    if (chart.lastChild) chart.removeChild(chart.lastChild);
+                  }
+                }
+                maxCols = next;
+              });
+              ro.observe(chart);
+            }
+
+            const tick = () => {
+              const newCol = buildColumn(randomDots());
+              chart.insertBefore(newCol, chart.firstChild);
+              while (chart.children.length > maxCols) {
+                chart.removeChild(chart.lastChild);
+              }
+            };
+            setInterval(tick, TICK_MS);
           });
         });
       })();
