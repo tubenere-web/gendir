@@ -146,13 +146,36 @@
         margin-top: auto;
         width: 120px;
         height: 44px;
-  padding: 0 32px;
+        padding: 0 32px;
         border: none;
         border-radius: 8px;
         background: #e6e6e6;
         color: #2f3031;
         font-size: 14px;
         font-weight: 500;
+        cursor: pointer;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.7),
+          0 10px 26px rgba(255, 255, 255, 0.08);
+        transition:
+          transform 0.24s ease,
+          box-shadow 0.24s ease,
+          background-color 0.24s ease;
+      }
+      .btn-light:hover,
+      .btn-light:focus-visible {
+        transform: translateY(-2px);
+        background: #f2f2f2;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.84),
+          0 14px 34px rgba(255, 255, 255, 0.14);
+        outline: none;
+      }
+      .btn-light:active {
+        transform: translateY(0);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.65),
+          0 8px 18px rgba(255, 255, 255, 0.09);
       }
       .cards-grid-3 {
         display: grid;
@@ -837,6 +860,18 @@
         color: #ccc;
         border-bottom: none;
       }
+      .integration-item__name {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .integration-item__logo {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+        flex-shrink: 0;
+        display: block;
+      }
       @media (max-width: 520px) {
         .anim-combo-chart { padding: 8px 10px; }
         .anim-combo-dot-column { gap: 4px; }
@@ -875,13 +910,36 @@
         margin-top: auto;
         width: 190px;
         height: 44px;
-  padding: 0 32px;
+        padding: 0 32px;
         border: none;
         border-radius: 8px;
         background: #e6e6e6;
         color: #2f3031;
         font-size: 14px;
         font-weight: 500;
+        cursor: pointer;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.7),
+          0 10px 26px rgba(255, 255, 255, 0.08);
+        transition:
+          transform 0.24s ease,
+          box-shadow 0.24s ease,
+          background-color 0.24s ease;
+      }
+      .radar-info__btn:hover,
+      .radar-info__btn:focus-visible {
+        transform: translateY(-2px);
+        background: #f2f2f2;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.84),
+          0 14px 34px rgba(255, 255, 255, 0.14);
+        outline: none;
+      }
+      .radar-info__btn:active {
+        transform: translateY(0);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.65),
+          0 8px 18px rgba(255, 255, 255, 0.09);
       }
       .radar-stage {
         height: 424px;
@@ -1052,17 +1110,117 @@
         display: flex;
         gap: 4px;
         margin-bottom: 0;
+        position: relative;
+        padding: 4px 0;
+        isolation: isolate;
+      }
+      .eff-strip::after {
+        content: "";
+        position: absolute;
+        top: -2px;
+        bottom: -2px;
+        left: 0;
+        width: 22%;
+        background: linear-gradient(
+          90deg,
+          rgba(46, 204, 113, 0) 0%,
+          rgba(46, 204, 113, 0.22) 38%,
+          rgba(255, 255, 255, 0.38) 50%,
+          rgba(46, 204, 113, 0.22) 62%,
+          rgba(46, 204, 113, 0) 100%
+        );
+        filter: blur(5px);
+        pointer-events: none;
+        mix-blend-mode: screen;
+        z-index: 1;
+        animation: eff-strip-scan 4.8s cubic-bezier(0.55, 0, 0.45, 1) infinite;
+      }
+      @keyframes eff-strip-scan {
+        0% { transform: translateX(-30%); opacity: 0; }
+        12% { opacity: 1; }
+        88% { opacity: 1; }
+        100% { transform: translateX(460%); opacity: 0; }
       }
       .eff-bottom-wrap { margin-top: auto; }
       .eff-strip span {
+        position: relative;
         width: 12px;
         height: 12px;
+        border-radius: 2px;
         background: #2ecc71;
-        transition: background-color 900ms ease, box-shadow 900ms ease;
+        box-shadow:
+          0 0 6px rgba(46, 204, 113, 0.55),
+          0 0 14px rgba(46, 204, 113, 0.22);
+        animation: eff-strip-pulse 2.6s ease-in-out infinite;
+        transform-origin: center;
+        transition:
+          background-color 420ms ease,
+          box-shadow 420ms ease,
+          transform 480ms cubic-bezier(0.34, 1.56, 0.64, 1),
+          opacity 420ms ease;
+      }
+      .eff-strip span:nth-child(1) { animation-delay: -0.00s; }
+      .eff-strip span:nth-child(2) { animation-delay: -0.10s; }
+      .eff-strip span:nth-child(3) { animation-delay: -0.20s; }
+      .eff-strip span:nth-child(4) { animation-delay: -0.30s; }
+      .eff-strip span:nth-child(5) { animation-delay: -0.40s; }
+      .eff-strip span:nth-child(6) { animation-delay: -0.50s; }
+      .eff-strip span:nth-child(7) { animation-delay: -0.60s; }
+      .eff-strip span:nth-child(8) { animation-delay: -0.70s; }
+      .eff-strip span:nth-child(9) { animation-delay: -0.80s; }
+      .eff-strip span:nth-child(10) { animation-delay: -0.90s; }
+      .eff-strip span:nth-child(11) { animation-delay: -1.00s; }
+      .eff-strip span:nth-child(12) { animation-delay: -1.10s; }
+      .eff-strip span:nth-child(13) { animation-delay: -1.20s; }
+      .eff-strip span:nth-child(14) { animation-delay: -1.30s; }
+      .eff-strip span:nth-child(15) { animation-delay: -1.40s; }
+      .eff-strip span:nth-child(16) { animation-delay: -1.50s; }
+      .eff-strip span:nth-child(17) { animation-delay: -1.60s; }
+      .eff-strip span:nth-child(18) { animation-delay: -1.70s; }
+      .eff-strip span:nth-child(19) { animation-delay: -1.80s; }
+      .eff-strip span:nth-child(20) { animation-delay: -1.90s; }
+      .eff-strip span:nth-child(21) { animation-delay: -2.00s; }
+      .eff-strip span:nth-child(22) { animation-delay: -2.10s; }
+      .eff-strip span:nth-child(23) { animation-delay: -2.20s; }
+      .eff-strip span:nth-child(24) { animation-delay: -2.30s; }
+      .eff-strip span:nth-child(25) { animation-delay: -2.40s; }
+      @keyframes eff-strip-pulse {
+        0%, 100% {
+          box-shadow:
+            0 0 4px rgba(46, 204, 113, 0.35),
+            0 0 10px rgba(46, 204, 113, 0.15);
+          filter: brightness(0.9);
+          transform: scaleY(0.86);
+        }
+        50% {
+          box-shadow:
+            0 0 12px rgba(46, 204, 113, 0.9),
+            0 0 28px rgba(46, 204, 113, 0.52),
+            0 0 48px rgba(46, 204, 113, 0.22);
+          filter: brightness(1.22);
+          transform: scaleY(1.08);
+        }
       }
       .eff-strip span.is-off {
         background: #3d3d3d;
-        box-shadow: none;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        animation: eff-strip-off-flicker 3.4s ease-in-out infinite;
+        transform: scaleY(0.4);
+        opacity: 0.75;
+      }
+      @keyframes eff-strip-off-flicker {
+        0%, 100% { opacity: 0.55; }
+        50% { opacity: 0.9; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .eff-strip::after { animation: none; opacity: 0; }
+        .eff-strip span {
+          animation: none;
+          transform: none;
+          filter: none;
+          box-shadow: 0 0 6px rgba(46, 204, 113, 0.35);
+        }
+        .eff-strip span.is-off { animation: none; transform: none; opacity: 0.6; }
       }
       .eff-bottom-title {
         color: #fff;
@@ -1168,7 +1326,38 @@
         max-width: 740px;
       }
       .ai-banner-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; }
-.btn-dark-primary { background: #fff; color: #000; padding: 0 32px; height: 44px; border: none; border-radius: 8px; font-weight: 500; cursor: pointer; }
+.btn-dark-primary {
+        background: #fff;
+        color: #000;
+        padding: 0 32px;
+        height: 44px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.7),
+          0 10px 26px rgba(255, 255, 255, 0.08);
+        transition:
+          transform 0.24s ease,
+          box-shadow 0.24s ease,
+          background-color 0.24s ease;
+      }
+      .btn-dark-primary:hover,
+      .btn-dark-primary:focus-visible {
+        transform: translateY(-2px);
+        background: #f5f5f5;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.84),
+          0 14px 34px rgba(255, 255, 255, 0.18);
+        outline: none;
+      }
+      .btn-dark-primary:active {
+        transform: translateY(0);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.65),
+          0 8px 18px rgba(255, 255, 255, 0.09);
+      }
       .ai-banner-text {
         color: #9c9c9d;
         font-family: Inter, sans-serif;
@@ -1496,10 +1685,10 @@
               </div>
               <div style="text-align:right;color:#9c9c9d;font-size:16px;line-height:22.4px;margin-bottom:8px;">● 3 агента онлайн</div>
               <div class="integrations-list">
-                <div class="integration-item"><span>Wildberries</span><span>синхронизирован</span></div>
-                <div class="integration-item"><span>Ozon</span><span>синхронизирован</span></div>
-                <div class="integration-item"><span>Яндекс.Маркет</span><span>синхронизирован</span></div>
-                <div class="integration-item"><span>МойСклад/1С</span><span>синхронизирован</span></div>
+                <div class="integration-item"><span class="integration-item__name"><img src="img/logo_on/wb-short-white.svg" alt="" class="integration-item__logo" loading="lazy" decoding="async" />Wildberries</span><span>синхронизирован</span></div>
+                <div class="integration-item"><span class="integration-item__name"><img src="img/logo_on/ozon.svg" alt="" class="integration-item__logo" loading="lazy" decoding="async" />Ozon</span><span>синхронизирован</span></div>
+                <div class="integration-item"><span class="integration-item__name"><img src="img/logo_on/ya_market.svg" alt="" class="integration-item__logo" loading="lazy" decoding="async" />Яндекс.Маркет</span><span>синхронизирован</span></div>
+                <div class="integration-item"><span class="integration-item__name"><img src="img/logo_on/moy-sklad-icon-logo.svg" alt="" class="integration-item__logo" loading="lazy" decoding="async" />МойСклад/1С</span><span>синхронизирован</span></div>
               </div>
             </div>
           </div>

@@ -13,20 +13,19 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <header class="main-header">
+      <div class="main-header__logo">Гендир</div>
+      <nav class="main-header__nav" aria-label="Главная навигация">
+        <a href="#" class="main-header__link">О нас</a>
+        <a href="#" class="main-header__link">Возможности</a>
+        <a href="#" class="main-header__link">Интеграции</a>
+        <a href="#" class="main-header__link">Безопасность</a>
+        <a href="#" class="main-header__link">Тарифы</a>
+      </nav>
+      <button type="button" class="main-header__cta">Начать бесплатно</button>
+    </header>
     <main class="page">
     <section class="main-hero">
-      <header class="main-header">
-        <div class="main-header__logo">ГЕНДИР</div>
-        <nav class="main-header__nav" aria-label="Главная навигация">
-          <a href="#" class="main-header__link">О нас</a>
-          <a href="#" class="main-header__link">Возможности</a>
-          <a href="#" class="main-header__link">Интеграции</a>
-          <a href="#" class="main-header__link">Безопасность</a>
-          <a href="#" class="main-header__link">Тарифы</a>
-        </nav>
-        <button type="button" class="main-header__cta">Начать бесплатно</button>
-      </header>
-
       <div class="main-hero__content">
         <h1 class="main-hero__title">ИИ Генеральный директор,<br />который работает 24/7</h1>
         <p class="main-hero__subtitle">
@@ -39,7 +38,7 @@
 
     <section class="hero hero--primary" data-hero-agent="ivan">
       <div class="hero-grid">
-        <p class="top-intro">ЗНАКОМЬТЕСЬ, ВАШ ГЕНЕРАЛЬНЫЙ ДИРЕКТОР</p>
+        <p class="top-intro">АКОМЬТЕСЬ, ВАШ ИИ ГЕНЕРАЛЬНЫЙ ДИРЕКТОР — ИВАН ИВАНОВИЧ</p>
 
         <div class="left-column">
           <div class="lead-box">
@@ -246,22 +245,6 @@
           </div>
 
           <div class="image-box image-box--agents" aria-label="Портрет активного агента"></div>
-
-          <div class="hero-bottom" data-agent-content="analyst">
-            <div class="stats-label">Аналитик в&nbsp;цифрах</div>
-            <div class="stats-item"><span>28 проверок</span></div>
-            <div class="stats-item"><span>4 банка</span></div>
-            <div class="stats-item"><span>3 маркетплейса</span></div>
-            <div class="stats-item"><span>Каждую минуту</span></div>
-          </div>
-
-          <div class="hero-bottom" data-agent-content="assistant" hidden>
-            <div class="stats-label">Ассистент в&nbsp;цифрах</div>
-            <div class="stats-item"><span>+10 ч&nbsp;/ неделя</span></div>
-            <div class="stats-item"><span>Bitrix24</span></div>
-            <div class="stats-item"><span>Telegram</span></div>
-            <div class="stats-item"><span>Календарь</span></div>
-          </div>
 
           <div class="right-rail">
             <p class="top-abilities">Суперспособности</p>
@@ -607,14 +590,7 @@
                   </div>
                 </div>
                 <div class="anim-integ__logo" aria-hidden="true">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M12 3L20 8.5V15.5L12 21L4 15.5V8.5L12 3Z"
-                      stroke="rgba(165,243,252,0.95)"
-                      stroke-width="1.2"
-                    />
-                    <path d="M12 8v8M8.5 10.5l7 3M8.5 13.5l7-3" stroke="rgba(165,243,252,0.75)" stroke-width="1" />
-                  </svg>
+                  <span class="anim-integ__logo-text">Гендир</span>
                 </div>
               </div>
               <div class="anim-integ__row">
@@ -637,8 +613,7 @@
           </div>
           <h3 class="anim-integ__caption">Подключён ко всему <br />вашему бизнесу</h3>
           <p class="anim-integ__description">
-            Маркетплейсы, склад, банк, задачи, календарь — 16+ <br />источников данных в одном месте. Чем
-            больше <br />подключено, тем точнее Иван Иванович
+            Маркетплейсы, склад, банк, задачи, календарь:<br />16+ источников данных в одном месте.<br />Чем больше подключено, тем точнее Иван Иванович
           </p>
           <button type="button" class="anim-integ__button">Все интеграции</button>
         </div>
@@ -654,7 +629,7 @@
         <h2 class="final-hero__title">Начните управлять<br />бизнесом по-новому</h2>
         <p class="final-hero__subtitle">10 минут и завтра утром — первый дайджест<br />от Ивана Ивановича</p>
         <button type="button" class="main-hero__cta">Попробовать бесплатно</button>
-        <p class="final-hero__note">Бесплатно 14 дней · Без карты<br />100 кредитов в подарок</p>
+        <p class="final-hero__note">Бесплатно 14 дней · Без карты · 100 кредитов в подарок</p>
       </div>
     </section>
 

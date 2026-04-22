@@ -165,17 +165,22 @@
     });
 
     document.querySelectorAll("[data-agent-switch]").forEach(function (root) {
-      root.addEventListener("click", function (event) {
-        var tab = event.target.closest("[data-agent-tab]");
-        if (!tab || !root.contains(tab)) return;
-        switchAgent(root, tab.getAttribute("data-agent-tab"));
-      });
-
       root.querySelectorAll("[data-agent-tab]").forEach(function (tab) {
+        var agent = tab.getAttribute("data-agent-tab");
+        var hoverZone = tab.closest(".lead-box--switcher, .about-box--switcher") || tab;
+
+        hoverZone.addEventListener("mouseenter", function () {
+          switchAgent(root, agent);
+        });
+
+        tab.addEventListener("focus", function () {
+          switchAgent(root, agent);
+        });
+
         tab.addEventListener("keydown", function (event) {
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
-            switchAgent(root, tab.getAttribute("data-agent-tab"));
+            switchAgent(root, agent);
           }
         });
       });
