@@ -6,6 +6,7 @@
     <title>Блок 1 в 1</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Sometype+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <style>
       :root { --container-width: 1204px; --text-dark: #f5f5f5; --text-gray: #86868b; --green: #2ecc71; --border-color: #2a2a2f; }
       * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
@@ -1496,6 +1497,508 @@
         opacity: 0.6;
       }
       .status-dot { display: inline-block; width: 8px; height: 8px; background: var(--green); border-radius: 50%; margin-right: 6px; }
+
+      /* =========================================================
+         MOBILE ADAPTATION (<=768px, designed for 375px)
+         ========================================================= */
+      @media (max-width: 768px) {
+        body { overflow-x: hidden; }
+        .wrapper {overflow: visible; max-width: 100%; }
+        .container { width: 100%; }
+
+        .light-section { padding-top: 0; }
+
+        /* Intro + subtitle removed entirely — mobile starts from "Управляйте бизнесом..." */
+        .subtitle-top,
+        .intro-top { display: none; }
+
+        /* All row-grids stack vertically */
+        .grid-row-1,
+        .grid-row-2,
+        .grid-row-3,
+        .grid-row-4,
+        .dark-row-2col {
+          display: block;
+          grid-template-columns: none;
+          height: auto;
+          gap: 0;
+          margin-top: 0;
+          margin-bottom: 24px;
+        }
+
+        /* ===== Left main card "Управляйте бизнесом..." ===== */
+        .left-main-card {
+          height: auto;
+          padding: 16px;
+          margin-bottom: 12px;
+        }
+        .left-main-title {
+          color: #fff;
+          font-family: Inter, sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 100%;
+          letter-spacing: 0.2px;
+          margin-bottom: 16px;
+        }
+        .left-main-title br { display: none; }
+        .left-main-text {
+          color: #9c9c9d;
+          font-family: Inter, sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 110%;
+          letter-spacing: normal;
+          margin-bottom: 16px;
+        }
+        .btn-light {
+          width: 100%;
+          margin-top: 0;
+        }
+
+        /* ===== Stat cards grid (3 in a row, stretched) ===== */
+        .cards-grid-3 {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 4px;
+          margin-bottom: 24px;
+        }
+        .stat-card {
+          height: 188px;
+          min-height: 188px;
+          padding: 10px 8px;
+          overflow: hidden;
+        }
+
+        /* Stat card — small label (МАРЖА EBITDA / КЛЮЧЕВЫЕ МЕТРИКИ / ЧИСТАЯ ПРИБЫЛЬ) */
+        .anim-ebitda-card__label,
+        .anim-metrics__title,
+        .anim-kpi-card__label {
+          color: #9c9c9d;
+          text-align: center;
+          font-family: Inter, sans-serif;
+          font-size: 6.245px;
+          font-weight: 500;
+          line-height: 100%;
+          letter-spacing: normal;
+          margin: 0 0 26px;
+        }
+
+        .anim-ebitda-card__value {
+          font-size: 18px;
+          letter-spacing: -1px;
+        }
+        .anim-ebitda-card__trend { width: 12px; height: 12px; }
+        .anim-ebitda-card__chart-wrap { margin-top: 6px; width: 100%; }
+
+        .anim-ebitda-card__foot {
+          margin-left: -8px;
+          margin-right: -8px;
+          padding: 6px 8px 0;
+        }
+        .anim-ebitda-card__hint {
+          color: #fff;
+          font-family: Inter, sans-serif;
+          font-size: 10.705px;
+          font-weight: 400;
+          line-height: 100%;
+          letter-spacing: 0.089px;
+          margin: 4px 0 0 0;
+        }
+        .anim-ebitda-card__sub,
+        .anim-kpi-card__note {
+          color: #9c9c9d;
+          font-family: Inter, sans-serif;
+          font-size: 6.245px;
+          font-weight: 500;
+          line-height: 100%;
+          letter-spacing: normal;
+          margin: 4px 0 0;
+        }
+
+        .anim-kpi-card__delta {
+          color: #fff;
+          font-size: 10.705px;
+          font-weight: 400;
+          line-height: 100%;
+          letter-spacing: 0.089px;
+          margin: 6px 0 0;
+        }
+
+        /* Shrink complex visualizations to fit narrow mobile cards */
+        .anim-metrics {
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          min-height: 100%;
+        }
+        .anim-metrics__matrix-wrap {
+          margin: 4px 0 0;
+          padding: 0;
+          flex: 1 1 auto;
+          min-height: 0;
+        }
+        .privacy-visual-host {
+          min-height: 0;
+          flex: 1 1 auto;
+          margin: 0;
+          width: 100%;
+        }
+
+        .anim-kpi-card__gauge {
+          width: 100%;
+          margin: 2px auto 6px;
+        }
+        .SyncVisual_syncNumber__e74IZ {
+          font-size: 12cqmin;
+        }
+        .SyncVisual_syncVisual__pz6oN.SyncVisual_inView__3jK1K {
+          margin-top: -26px;
+        }
+        .SyncVisual_syncStats__E6Bdb {
+          margin-top: -26px;
+        }
+        .PrivacyVisual_privacyVisual__cSfiZ {
+          margin-top: -26px;
+        }
+        .anim-kpi-card__rule {
+          margin: auto -8px 6px;
+        }
+        .anim-kpi-card__delta,
+        .anim-kpi-card__note {
+          align-self: flex-start;
+        }
+
+        /* ===== Integration box "Знает о вашем бизнесе..." ===== */
+        .integration-box {
+          height: auto;
+          padding: 16px;
+          margin-bottom: 12px;
+          border: 0.3px dashed #888;
+          box-shadow: none;
+        }
+        .integration-item {
+          width: 100%;
+          padding: 4px 8px;
+          color: #fff;
+          font-family: Inter, sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 24px;
+        }
+        .integration-item__logo {
+          width: 18px;
+          height: 18px;
+        }
+        .integration-box h2 {
+          font-size: 40px;
+          line-height: 1;
+          letter-spacing: -1px;
+          margin-bottom: 4px;
+        }
+        .integration-box .sub {
+          font-size: 10px;
+          line-height: 1.2;
+          margin-bottom: 16px;
+        }
+        .integration-box h3 {
+          font-family: Inter, sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 100%;
+          letter-spacing: 0.2px;
+          margin-bottom: 12px;
+        }
+        .integration-box h3 br { display: none; }
+        .integration-box p {
+          font-family: Inter, sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 110%;
+          color: #9c9c9d;
+        }
+        .integration-box p br { display: none; }
+
+        /* ===== Dark chart box (integrations graph) ===== */
+        .dark-chart-box {
+          height: auto;
+          padding: 16px;
+          margin-bottom: 24px;
+        }
+
+        /* ===== Radar section ===== */
+        .radar-info {
+          padding: 16px 0;
+          height: auto;
+          margin-bottom: 12px;
+          border: none;
+          box-shadow: none;
+          background: transparent;
+        }
+        .radar-info__title {
+          color: #fff;
+          font-family: Inter, sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 100%;
+          letter-spacing: 0.2px;
+          margin-bottom: 12px;
+        }
+        .radar-info__title br { display: none; }
+        .radar-info__text {
+          color: #9c9c9d;
+          font-family: Inter, sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 110%;
+          margin-bottom: 16px;
+        }
+        .radar-info__btn {
+          width: 100%;
+        }
+        .radar-stage {
+          padding: 16px 16px 0px 16px;
+          height: auto;
+        }
+        .anim-radar {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 2 / 1;
+        }
+
+        /* ===== Dark section ===== */
+        .dark-section { padding: 24px 0; }
+
+        .grid-row-4 {
+          height: auto;
+          margin-bottom: 24px;
+        }
+        .dark-col {
+          padding: 16px;
+          border-right: none;
+          border-bottom: 0.5px solid rgba(255,255,255,.2);
+        }
+        .dark-col:last-child { border-bottom: none; }
+        .dark-col h3 {
+          color: #fff;
+          font-family: Inter, sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 100%;
+          letter-spacing: 0.2px;
+          margin-bottom: 12px;
+        }
+        .dark-col h3 br { display: none; }
+        .dark-col p {
+          color: #9c9c9d;
+          font-family: Inter, sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 110%;
+        }
+        .dark-col p br { display: none; }
+        .dark-col__label {
+          font-size: 10px;
+          letter-spacing: 1.5px;
+          margin-bottom: 12px;
+        }
+        .eff-value {
+          color: #32965A;
+          font-family: "Geist Mono", "Sometype Mono", ui-monospace, monospace;
+          font-size: 97.7px;
+          font-weight: 400;
+          line-height: 100px;
+          letter-spacing: -4px;
+          margin-bottom: 16px;
+        }
+        /* Shrink eff-strip visually to match desktop look, fit 293x32 area */
+        .eff-strip {
+          width: 293px;
+          max-width: 100%;
+          height: 32px;
+          gap: 3px;
+          margin-bottom: 0;
+          align-items: center;
+          justify-content: flex-start;
+          padding: 0;
+        }
+        .eff-strip span {
+          width: 9px;
+          height: 9px;
+          flex: 0 0 9px;
+          border-radius: 1.5px;
+        }
+        .eff-bottom-wrap { margin-top: 24px; }
+        .eff-bottom-title {
+          color: #fff;
+          font-family: Inter, sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 100%;
+          letter-spacing: 0.2px;
+          margin-bottom: 16px;
+        }
+        .eff-bottom-text {
+          color: #9c9c9d;
+          font-family: Inter, sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 100%;
+          letter-spacing: normal;
+        }
+
+        /* ===== AI banner ===== */
+        .ai-banner {
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          height: auto;
+          padding: 24px 16px;
+          gap: 24px;
+          align-items: stretch;
+        }
+        .ai-banner-kicker {
+          font-size: 10px;
+          letter-spacing: 1.5px;
+        }
+        .ai-banner h1 {
+          font-size: 24px;
+          line-height: 110%;
+          letter-spacing: 0.2px;
+        }
+        .ai-banner h1 br { display: none; }
+        .ai-banner-footer {
+          margin-top: auto;
+          display: flex;
+          flex-direction: column-reverse;
+          gap: 16px;
+          align-items: stretch;
+          width: 100%;
+        }
+        .btn-dark-primary {
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+        .ai-banner-text {
+          font-size: 12px;
+          line-height: 120%;
+          color: #9c9c9d;
+        }
+        .ai-banner-text br { display: none; }
+
+        /* ===== dark-row-2col (ЗНАЕТ ВАШ БИЗНЕС / ВИДИТ ВЕСЬ РЫНОК) ===== */
+        .dark-row-2col {
+          height: auto;
+        }
+        .anim-voice {
+          padding: 12px;
+          width: 100%;
+        }
+        .anim-voice__card {
+          width: 100%;
+          height: 153px;
+          border: none;
+          box-shadow: none;
+          border-radius: 0;
+          padding: 12px;
+          display: flex;
+          flex-direction: column;
+        }
+        .anim-voice__wave-wrap {
+          height: 70px;
+          border: 0.5px solid rgba(255, 255, 255, 0.2);
+          border-radius: 10px;
+          flex-shrink: 0;
+        }
+        .anim-voice__wave {
+          gap: 2px;
+        }
+        .anim-voice__bar {
+          width: 3px;
+        }
+        .anim-voice__text {
+          margin-top: 8px;
+          color: #FFF;
+          text-align: center;
+          font-family: Inter, sans-serif;
+          font-size: 10px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 12px;
+          letter-spacing: normal;
+        }
+        .anim-voice__text p {
+          margin: 0;
+          color: #FFF;
+          font-family: Inter, sans-serif;
+          font-size: 10px;
+          font-weight: 500;
+          line-height: 12px;
+        }
+        .dark-box {
+          border-right: none;
+          border-bottom: 0.5px solid rgba(255,255,255,.2);
+          padding: px;
+        }
+        .dark-box:last-child { border-bottom: none; }
+        .dark-box h2 {
+          color: #fff;
+          font-family: Inter, sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 100%;
+          letter-spacing: 0.2px;
+          margin-bottom: 12px;
+        }
+        .dark-box p {
+          color: #9c9c9d;
+          font-family: Inter, sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 110%;
+        }
+        .dark-box-title {
+          font-size: 10px;
+          letter-spacing: 1.5px;
+          margin-bottom: 12px;
+        }
+
+        /* ===== secicon row → 2x2 ===== */
+        .secicon-row {
+          grid-template-columns: repeat(2, 1fr);
+          margin-top: 0;
+        }
+        .secicon-item {
+          min-height: 164px;
+          padding: 24px 16px;
+          border-right: 0.5px solid rgba(255,255,255,.2);
+          border-bottom: 0.5px solid rgba(255,255,255,.2);
+        }
+        .secicon-item:nth-child(2n) { border-right: none; }
+        .secicon-item:last-child { border-right: none; }
+        .secicon-item:nth-last-child(-n+2) { border-bottom: none; }
+        .secicon-title {
+          font-family: Inter, sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 100%;
+          letter-spacing: 0.2px;
+          margin-bottom: 10px;
+        }
+        .secicon-text {
+          font-family: Inter, sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 120%;
+        }
+        .secicon-text br { display: none; }
+        .secicon-item img {
+          width: 32px; height: 32px;
+          margin-bottom: 12px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1605,7 +2108,7 @@
                         </div>
                         <div class="SyncVisual_syncStats__E6Bdb">
                           <span class="SyncVisual_syncNumber__e74IZ">2&nbsp;311</span>
-                          <span class="SyncVisual_syncLabel__H_WYT">EVENTS</span>
+                          <span class="SyncVisual_syncLabel__H_WYT">&nbsp;</span> 
                         </div>
                       </div>
                     </div>
@@ -1683,7 +2186,7 @@
                   </div>
                 </div>
               </div>
-              <div style="text-align:right;color:#9c9c9d;font-size:16px;line-height:22.4px;margin-bottom:8px;">● 3 агента онлайн</div>
+              <div style="text-align:right;color:#9c9c9d;font-size:16px;line-height:22.4px;margin-top:8px;margin-bottom:8px;">● 3 агента онлайн</div>
               <div class="integrations-list">
                 <div class="integration-item"><span class="integration-item__name"><img src="img/logo_on/wb-short-white.svg" alt="" class="integration-item__logo" loading="lazy" decoding="async" />Wildberries</span><span>синхронизирован</span></div>
                 <div class="integration-item"><span class="integration-item__name"><img src="img/logo_on/ozon.svg" alt="" class="integration-item__logo" loading="lazy" decoding="async" />Ozon</span><span>синхронизирован</span></div>
@@ -1774,8 +2277,7 @@
                     <div class="anim-voice__fade" aria-hidden="true"></div>
                   </div>
                   <div class="anim-voice__text">
-                    <p>Запоминает сезонность, маржу, стиль ваших решений.</p>
-                    <p>Каждую неделю рекомендации становятся персональнее.</p>
+                    <p>Запоминает сезонность, маржу, стиль ваших решений. Каждую неделю рекомендации становятся персональнее.</p>
                   </div>
                 </div>
               </div>
@@ -2221,6 +2723,37 @@
             start();
           });
         });
+      })();
+    </script>
+    <script>
+      (function () {
+        function syncHeightToParent() {
+          try {
+            if (window.parent === window) return;
+            var h = Math.max(
+              document.documentElement.scrollHeight,
+              document.body ? document.body.scrollHeight : 0
+            );
+            var frames = window.parent.document.querySelectorAll(".external-block__frame");
+            for (var i = 0; i < frames.length; i++) {
+              if (frames[i].contentWindow === window) {
+                frames[i].style.height = h + "px";
+                break;
+              }
+            }
+          } catch (e) {
+            /* cross-origin — ignore */
+          }
+        }
+        window.addEventListener("load", syncHeightToParent);
+        window.addEventListener("resize", syncHeightToParent);
+        document.addEventListener("DOMContentLoaded", syncHeightToParent);
+        if (typeof ResizeObserver !== "undefined" && document.body) {
+          new ResizeObserver(syncHeightToParent).observe(document.body);
+        }
+        setTimeout(syncHeightToParent, 300);
+        setTimeout(syncHeightToParent, 1000);
+        setTimeout(syncHeightToParent, 2500);
       })();
     </script>
   </body>
