@@ -2241,6 +2241,8 @@ body::after {
     min-height: 1px;
     display: block;
     border: 0;
+    /* iOS/Android: iframe перехватывал свайпы и "клеил" вертикальный скролл страницы */
+    pointer-events: none;
   }
 
   .final-hero {
