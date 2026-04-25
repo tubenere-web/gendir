@@ -2266,8 +2266,9 @@ body::after {
   }
   .external-block__frame {
     width: 100%;
-    height: 1px;
-    min-height: 1px;
+    /* Fallback до load/resize iframe: не даем странице "заканчиваться" раньше времени */
+    height: 3200px;
+    min-height: 3200px;
     display: block;
     border: 0;
     /* iOS/Android: iframe перехватывал свайпы и "клеил" вертикальный скролл страницы */

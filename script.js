@@ -145,9 +145,15 @@
 
   function initIframeAutoResize() {
     document.querySelectorAll(".external-block__frame").forEach(function (frame) {
+      var isMobile = window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
       var lastHeight = 0;
       var rafId = 0;
       var resizeTimer = 0;
+
+      if (isMobile) {
+        frame.style.height = "3200px";
+        frame.style.minHeight = "3200px";
+      }
 
       function measureAndApplyHeight() {
         try {
