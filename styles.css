@@ -430,9 +430,11 @@ body::after {
   min-height: 760px;
   position: relative;
   overflow: visible;
+  isolation: isolate;
   background: transparent;
 }
 
+/* Тот же back.svg и маска, что у .main-hero::before, но отражение по вертикали */
 .final-hero::before {
   content: "";
   position: absolute;
@@ -441,8 +443,8 @@ body::after {
   left: -360px;
   right: -360px;
   background: url("img/hero/back.svg") center top / 1600px auto no-repeat;
-  transform: rotate(180deg);
-  transform-origin: center;
+  transform: scaleY(-1);
+  transform-origin: center center;
   -webkit-mask-image: radial-gradient(
     ellipse 58% 72% at 50% 58%,
     #000 22%,
@@ -460,7 +462,26 @@ body::after {
     rgba(0, 0, 0, 0) 100%
   );
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
+}
+
+/* Зеркально к .main-hero::after: затемнение сверху блока */
+.final-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  bottom: auto;
+  height: 180px;
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 15, 0) 0%,
+    rgba(10, 10, 15, 0.55) 55%,
+    #0a0a0f 100%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 
@@ -520,6 +541,11 @@ body::after {
   grid-template-columns: 176px 1fr 1fr 1fr;
   gap: 24px;
   border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+.site-footer::before,
+.site-footer::after {
+  content: none;
+  display: none;
 }
 
 .site-footer__brand {
@@ -638,6 +664,10 @@ body::after {
   font-style: normal;
   font-weight: 500;
   line-height: 22.4px;
+}
+
+.chat-mobile-break {
+  display: none;
 }
 
 .chat-preview {
@@ -1030,6 +1060,10 @@ body::after {
   border-right: 0.2px solid rgba(255, 255, 255, 0.38);
   display: grid;
   grid-template-rows: 240px 284px;
+}
+
+.hero-offer-mobile {
+  display: none;
 }
 
 .lead-box {
@@ -1463,15 +1497,21 @@ body::after {
     0 0 14px rgba(255, 255, 255, 0.2);
 }
 
-/* =========================================================
-   MOBILE ADAPTATION (<=768px, designed for 375px)
-   ========================================================= */
+
 @media (max-width: 768px) {
+  :root {
+    --hero-mobile-bg-x: -76px;
+    --hero-mobile-bg-y: 100px;
+    --final-hero-mobile-bg-x: -76px;
+    --final-hero-mobile-bg-y: 100px;
+  }
+ 
   html,
   body {
     width: 100%;
     max-width: 100vw;
     overflow-x: hidden;
+    background: #0c1018;
   }
   body {
     display: block;
@@ -1623,16 +1663,19 @@ body::after {
     padding-top: 0;
   }
   .main-hero::before {
-    left: -160px;
-    right: -160px;
+    left: 0;
+    right: 0;
     bottom: -140px;
+    background: url("img/hero/heromobile/hero_mobile.png") var(--hero-mobile-bg-x) var(--hero-mobile-bg-y) / 136% auto no-repeat;
+    -webkit-mask-image: none;
+    mask-image: none;
+    filter: none;
   }
   .main-hero::after {
     height: 100px;
   }
   .main-hero__content {
-    padding-top: 96px;
-    padding-bottom: 48px;
+    padding-top: 154px;
   }
   .main-hero__title {
     font-size: 24px;
@@ -1722,6 +1765,26 @@ body::after {
     display: none;
   }
 
+  .hero--primary .hero-offer-mobile {
+    display: flex;
+    width: 100%;
+    padding: 23px 16px;
+    align-items: center;
+    gap: 10px;
+    border: 0.2px solid #fff;
+    border-top: none;
+    margin: 0;
+  }
+  .hero--primary .hero-offer-mobile p {
+    margin: 0;
+    color: #fff;
+    font-family: Inter, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+  }
+
   .hero--primary .about-box {
     width: 100%;
     height: auto;
@@ -1734,7 +1797,9 @@ body::after {
     border-top: none;
     margin: 0;
   }
-
+  .final-hero {
+    margin-top: 120px;
+  }
   .hero--primary .about-box p {
     font-family: Inter, sans-serif;
     font-size: 12px;
@@ -1752,15 +1817,16 @@ body::after {
   .hero--primary .image-box {
     display: flex;
     width: 100%;
-    height: 436px;
+    height: 220px;
     padding-top: 10px;
     justify-content: center;
     align-items: flex-end;
     gap: 8.684px;
     border: 0.2px solid #fff;
     border-top: none;
-    background-size: cover;
-    background-position: center 22%;
+    background-size: 60% auto;
+    background-position: center 60%;
+    background-repeat: no-repeat;
   }
 
   .hero--primary .hero-bottom {
@@ -1880,7 +1946,7 @@ body::after {
     color: #fff;
     font-family: Inter, sans-serif;
     font-size: 12px;
-    padding-bottom: 16px;
+    padding-bottom: 32px;
     font-weight: 500;
     line-height: normal;
     letter-spacing: 0.179px;
@@ -1997,8 +2063,8 @@ body::after {
 
   .agent-mobile-expand__photo {
     width: 100%;
-    height: 360px;
-    background-color: #0a0a0f;
+    height: 300px;
+    background-color: #0c1018;
     background-position: center top;
     background-size: contain;
     background-repeat: no-repeat;
@@ -2062,16 +2128,33 @@ body::after {
     font-size: 28px;
     line-height: 1.12;
     min-height: 0;
-    padding-bottom: 24px;
+    padding-bottom: 16px;
   }
   .team-text {
     padding-bottom: 32px;
   }
+  .team-text {
+    margin: 0;
+    color: #9c9c9d;
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22.4px;
+  }
+  .chat-section .team-kicker,
+  .chat-section .team-title,
+  .chat-section .team-text {
+    text-align: center;
+  }
+  .chat-mobile-break {
+    display: inline;
+  }
 
   .chat-preview {
     width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 27;
+    height: 558px;
+    aspect-ratio: auto;
   }
 
   .anim-integ__caption--desktop,
@@ -2119,6 +2202,10 @@ body::after {
     width: 100%;
     max-width: 100%;
   }
+  .anim-integ__strip {
+    gap: 16px;
+    padding-right: 16px;
+  }
   .integ-section {
     position: relative;
     isolation: isolate;
@@ -2132,9 +2219,9 @@ body::after {
     height: 84px;
     background: linear-gradient(
       180deg,
-      rgba(10, 10, 15, 0) 0%,
-      rgba(10, 10, 15, 0.52) 58%,
-      #0a0a0f 100%
+      rgba(12, 16, 24, 0) 0%,
+      rgba(12, 16, 24, 0.52) 58%,
+      #0c1018 100%
     );
     pointer-events: none;
     z-index: 1;
@@ -2164,9 +2251,17 @@ body::after {
     background: transparent;
   }
   .final-hero::before {
-    left: -160px;
-    right: -160px;
+    top: 0;
+    left: -16px;
+    right: -16px;
     bottom: -140px;
+    background: url("img/hero/heromobile/hero_mobile.png")
+      var(--final-hero-mobile-bg-x) var(--final-hero-mobile-bg-y) / 136% auto no-repeat;
+    -webkit-mask-image: none;
+    mask-image: none;
+    filter: none;
+    transform: scaleY(-1);
+    transform-origin: center center;
     z-index: 0;
   }
   .final-hero::after {
@@ -2174,13 +2269,14 @@ body::after {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -1px;
+    top: -1px;
+    bottom: auto;
     height: 100px;
     background: linear-gradient(
-      180deg,
-      rgba(10, 10, 15, 0) 0%,
-      rgba(10, 10, 15, 0.55) 55%,
-      #0a0a0f 100%
+      to top,
+      rgba(12, 16, 24, 0) 0%,
+      rgba(12, 16, 24, 0.55) 55%,
+      #0c1018 100%
     );
     pointer-events: none;
     z-index: 1;
@@ -2198,10 +2294,26 @@ body::after {
     height: 140px;
     background: linear-gradient(
       180deg,
-      #0a0a0f 0%,
-      rgba(10, 10, 15, 0.82) 38%,
-      rgba(10, 10, 15, 0.42) 68%,
-      rgba(10, 10, 15, 0) 100%
+      #0c1018 0%,
+      rgba(12, 16, 24, 0.82) 38%,
+      rgba(12, 16, 24, 0.42) 68%,
+      rgba(12, 16, 24, 0) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+  .final-hero__content::after {
+    content: "";
+    position: absolute;
+    left: -16px;
+    right: -16px;
+    bottom: -24px;
+    height: 130px;
+    background: linear-gradient(
+      180deg,
+      rgba(12, 16, 24, 0) 0%,
+      rgba(12, 16, 24, 0.58) 52%,
+      #0c1018 100%
     );
     pointer-events: none;
     z-index: 1;
@@ -2225,14 +2337,25 @@ body::after {
     width: 100%;
     min-height: 0;
     margin-top: 0;
-    padding: 14px 12px 32px;
+    padding:64px 12px 32px;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-auto-rows: auto;
     column-gap: 28px;
     row-gap: 16px;
     border-top: none;
-    background: transparent;
+    background: #0c1018;
     box-shadow: none;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .site-footer::after {
+    content: none;
+    display: none;
+  }
+  .site-footer::before {
+    content: none;
+    display: none;
   }
   .site-footer__brand {
     grid-column: 1 / -1;
@@ -2278,3 +2401,37 @@ body::after {
   }
 }
 
+
+
+@media (max-width: 430px) {
+  :root {
+    --hero-mobile-bg-x: -88px;
+    --hero-mobile-bg-y: 30px;
+    --final-hero-mobile-bg-x: -88px;
+    --final-hero-mobile-bg-y: 100px;
+  }
+}
+@media (max-width: 414px) {
+  :root {
+    --hero-mobile-bg-x: -84px;
+    --hero-mobile-bg-y: 43px;
+    --final-hero-mobile-bg-x: -88px;
+    --final-hero-mobile-bg-y: 100px;
+  }
+}
+@media (max-width: 390px) {
+  :root {
+    --hero-mobile-bg-x: -80px;
+    --hero-mobile-bg-y: 80px;
+    --final-hero-mobile-bg-x: -76px;
+    --final-hero-mobile-bg-y: 100px;
+  }
+}
+@media (max-width: 375px) {
+  :root {
+    --hero-mobile-bg-x: -76px;
+    --hero-mobile-bg-y: 100px;
+    --final-hero-mobile-bg-x: -76px;
+    --final-hero-mobile-bg-y: 100px;
+  }
+}

@@ -454,8 +454,10 @@
       .anim-kpi-card__gauge {
         position: relative;
         width: min(100%, 250px);
+        max-width: 100%;
+        max-height: 100%;
         aspect-ratio: 1;
-        margin: 8px auto 16px;
+        margin: 0 auto;
       }
       .anim-kpi-card__dial-wrap {
         position: absolute;
@@ -501,10 +503,21 @@
         pointer-events: none;
         animation: anim-kpi-val-in 0.55s ease-out 0.28s both;
       }
-      .anim-kpi-card__rule {
-        margin: auto -24px 20px;
-        border: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      .anim-kpi-card__body {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin: 8px 0 0;
+      }
+      .anim-kpi-card__foot {
+        flex-shrink: 0;
+        margin-left: -24px;
+        margin-right: -24px;
+        padding: 24px 24px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
       }
       .anim-kpi-card__delta {
         margin: 0 0 10px;
@@ -667,6 +680,34 @@
         }
       }
       .grid-row-2 { display: grid; grid-template-columns: 365px 1fr; gap: 40px; margin-top: 40px; margin-bottom: 20px; }
+      /* Вертикальный пунктир — под рядами/карточками (псевдо z-index ниже детей) */
+      .side-dash-column {
+        position: relative;
+        isolation: isolate;
+        box-sizing: border-box;
+      }
+      .side-dash-column > * {
+        position: relative;
+        z-index: 1;
+      }
+      .side-dash-column::before,
+      .side-dash-column::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 0;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .side-dash-column::before {
+        left: 0;
+        border-left: 0.2px dashed rgba(255, 255, 255, 0.25);
+      }
+      .side-dash-column::after {
+        right: 0;
+        border-right: 0.2px dashed rgba(255, 255, 255, 0.25);
+      }
       .integration-box {
         height: 424px;
         border: 0.5px solid rgba(255, 255, 255, 0.2);
@@ -950,6 +991,12 @@
         padding: 0 24px 0px;
         display: flex;
         flex-direction: column;
+      }
+      .radar-stage__kicker {
+        padding: 14px 0 8px;
+        color: #9c9c9d;
+        font-size: 16px;
+        line-height: 22.4px;
       }
       /* ——— Радар-локатор (луч + точки) ——— */
       .anim-radar {
@@ -1297,7 +1344,6 @@
         width: 1204px;
         height: 436px;
         border: 0.5px solid #ffffff4d;
-        background: #0b0f18;
         box-shadow: 0 0 17.1px 0 rgba(255, 255, 255, 0.12);
         padding: 24px 32px 32px;
         border-radius: 0;
@@ -1370,6 +1416,15 @@
         text-align: left;
       }
       .dark-row-2col { display: grid; grid-template-columns: 480px 1fr; gap: 0; margin-bottom: 40px; height: 421px; border: 0.5px solid rgba(255,255,255,.2); box-shadow: 0 0 7.9px 0 rgba(255,255,255,.25); }
+      /* Ряд с глобусом: без общего solid — рамка только dashed на .anim-globe слева/справа */
+      .dark-row-2col--globe {
+        border: none;
+        box-shadow: none;
+      }
+      .dark-row-2col--globe > .dark-box:first-child {
+        border: 0.5px solid rgba(255, 255, 255, 0.2);
+        border-right: none;
+      }
       .dark-box { background: transparent; padding: 24px 18px; border-right: 0.5px solid rgba(255,255,255,.2); display: flex; flex-direction: column; justify-content: flex-start; }
       .dark-box-title { font-size: 12px; text-transform: uppercase; color: #929292; margin-bottom: 20px; font-weight: 700; letter-spacing: 3px; line-height: 18px; }
       .dark-box h2 {
@@ -1430,7 +1485,21 @@
         z-index: 3;
       }
       .dark-box--globe { align-items: flex-end; }
-      .anim-voice { width: 100%; padding: 24px 20px; display: flex; align-items: center; justify-content: flex-end; overflow: hidden; }
+      .dark-box.dark-box--media.dark-box--globe {
+        padding: 0;
+      }
+      /* Отступ снаружи контента голоса — не padding внутри рамки ряда */
+      .anim-voice {
+        align-self: stretch;
+        width: auto;
+        margin: 24px 20px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        overflow: hidden;
+        box-sizing: border-box;
+      }
       .anim-voice__card {
         width: 92%;
         max-width: none;
@@ -1450,7 +1519,21 @@
         from { opacity: 0; transform: translateX(80px); clip-path: inset(0 0 0 100%); }
         to { opacity: 1; transform: translateX(0); clip-path: inset(0 0 0 0); }
       }
-      .anim-globe { position: relative; width: 100%; max-width: 100%; margin-inline: 0; height: 100%; min-height: 100%; border-radius: 0; overflow: hidden; background: transparent; border: none; }
+      .anim-globe {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        margin-inline: 0;
+        height: 100%;
+        min-height: 100%;
+        border-radius: 0;
+        overflow: hidden;
+        background: transparent;
+        border-top: none;
+        border-bottom: none;
+        border-left: 0.4px dashed rgba(255, 255, 255, 0.25);
+        border-right:0.4px dashed rgba(255, 255, 255, 0.25);
+      }
       .anim-globe__canvas { display: block; width: 100%; height: 100%; }
       .anim-globe__atmosphere { position: absolute; inset: 0; pointer-events: none; box-shadow: none; }
       .secicon-row {
@@ -1502,15 +1585,27 @@
          MOBILE ADAPTATION (<=768px, designed for 375px)
          ========================================================= */
       @media (max-width: 768px) {
-        body { overflow-x: hidden; }
+        body { overflow-x: hidden; background-color: #0c1018; }
         .wrapper {overflow: visible; max-width: 100%; }
         .container { width: 100%; }
 
         .light-section { padding-top: 0; }
 
-        /* Intro + subtitle removed entirely — mobile starts from "Управляйте бизнесом..." */
-        .subtitle-top,
+        /* Keep mobile kicker above "Управляйте бизнесом..." */
         .intro-top { display: none; }
+        .subtitle-top {
+          display: block;
+          margin: 0 0 16px;
+          color: #929292;
+          text-align: left;
+          font-family: Inter, sans-serif;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 18px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+        }
 
         /* All row-grids stack vertically */
         .grid-row-1,
@@ -1525,6 +1620,8 @@
           margin-top: 0;
           margin-bottom: 24px;
         }
+        .grid-row-1{
+          margin-bottom: 140px;     }
 
         /* ===== Left main card "Управляйте бизнесом..." ===== */
         .left-main-card {
@@ -1567,6 +1664,9 @@
           min-height: 188px;
           padding: 10px 8px;
           overflow: hidden;
+        }
+        .stat-card .anim-kpi-card {
+          height: 100%;
         }
 
         /* Stat card — small label (МАРЖА EBITDA / КЛЮЧЕВЫЕ МЕТРИКИ / ЧИСТАЯ ПРИБЫЛЬ) */
@@ -1621,7 +1721,18 @@
           font-weight: 400;
           line-height: 100%;
           letter-spacing: 0.089px;
-          margin: 6px 0 0;
+          margin: 0;
+        }
+
+        .anim-kpi-card__body {
+          flex: 1 1 auto;
+          min-height: 0;
+          margin: 0;
+        }
+        .anim-kpi-card__foot {
+          margin-left: -8px;
+          margin-right: -8px;
+          padding: 6px 8px 0;
         }
 
         /* Shrink complex visualizations to fit narrow mobile cards */
@@ -1645,8 +1756,10 @@
         }
 
         .anim-kpi-card__gauge {
-          width: 100%;
-          margin: 2px auto 6px;
+          width: min(100%, 250px);
+          max-width: 100%;
+          max-height: 100%;
+          margin: 0 auto;
         }
         .SyncVisual_syncNumber__e74IZ {
           font-size: 12cqmin;
@@ -1657,13 +1770,13 @@
         .SyncVisual_syncStats__E6Bdb {
           margin-top: -26px;
         }
+        .SyncVisual_syncInline__cPQ9A {
+          margin-top: -25px;
+          margin-left: -0.5px;
+        }
         .PrivacyVisual_privacyVisual__cSfiZ {
           margin-top: -26px;
         }
-        .anim-kpi-card__rule {
-          margin: auto -8px 6px;
-        }
-        .anim-kpi-card__delta,
         .anim-kpi-card__note {
           align-self: flex-start;
         }
@@ -1681,9 +1794,17 @@
           padding: 4px 8px;
           color: #fff;
           font-family: Inter, sans-serif;
-          font-size: 14px;
+          font-size: 12px;
           font-weight: 400;
-          line-height: 24px;
+          line-height: 16px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 2px;
+        }
+        .integration-item span:last-child {
+          font-size: 12px;
+          line-height: 16px;
         }
         .integration-item__logo {
           width: 18px;
@@ -1698,7 +1819,7 @@
         .integration-box .sub {
           font-size: 10px;
           line-height: 1.2;
-          margin-bottom: 16px;
+          margin-bottom: 32px;
         }
         .integration-box h3 {
           font-family: Inter, sans-serif;
@@ -1708,7 +1829,7 @@
           letter-spacing: 0.2px;
           margin-bottom: 12px;
         }
-        .integration-box h3 br { display: none; }
+        .integration-box h3 br { display: inline; }
         .integration-box p {
           font-family: Inter, sans-serif;
           font-size: 12px;
@@ -1716,20 +1837,21 @@
           line-height: 110%;
           color: #9c9c9d;
         }
-        .integration-box p br { display: none; }
+        .integration-box p br { display: inline; }
 
         /* ===== Dark chart box (integrations graph) ===== */
         .dark-chart-box {
           height: auto;
           padding: 16px;
-          margin-bottom: 24px;
+          margin-bottom: 64px;
+          border: 1px solid rgb(113, 113, 113);
         }
 
         /* ===== Radar section ===== */
         .radar-info {
-          padding: 16px 0;
+          padding: 16px 16px;
           height: auto;
-          margin-bottom: 12px;
+          margin-bottom: 16px;
           border: none;
           box-shadow: none;
           background: transparent;
@@ -1743,7 +1865,7 @@
           letter-spacing: 0.2px;
           margin-bottom: 12px;
         }
-        .radar-info__title br { display: none; }
+        .radar-info__title br { display: inline; }
         .radar-info__text {
           color: #9c9c9d;
           font-family: Inter, sans-serif;
@@ -1752,12 +1874,20 @@
           line-height: 110%;
           margin-bottom: 16px;
         }
+        .radar-info__text br { display: inline; }
         .radar-info__btn {
           width: 100%;
         }
         .radar-stage {
           padding: 16px 16px 0px 16px;
           height: auto;
+          border: 1px solid rgb(113, 113, 113);
+        }
+        .radar-stage__kicker {
+          padding: 0;
+          margin-bottom: 16px;
+          font-size: 12px;
+          line-height: 16px;
         }
         .anim-radar {
           width: 100%;
@@ -1770,14 +1900,23 @@
 
         .grid-row-4 {
           height: auto;
-          margin-bottom: 24px;
+          margin-bottom: 40px;
+          border: none;
+          box-shadow: none;
+        }
+        .dark-row-2col {
+          margin-bottom: 0;
+        }
+        .dark-row-2col--voice {
+          margin-bottom: 40px;
+        }
+        .dark-col--employee-rating {
+          display: none;
         }
         .dark-col {
           padding: 16px;
-          border-right: none;
-          border-bottom: 0.5px solid rgba(255,255,255,.2);
+          border: 1px solid rgb(113, 113, 113);
         }
-        .dark-col:last-child { border-bottom: none; }
         .dark-col h3 {
           color: #fff;
           font-family: Inter, sans-serif;
@@ -1795,7 +1934,7 @@
           font-weight: 500;
           line-height: 110%;
         }
-        .dark-col p br { display: none; }
+        .dark-col p br { display: inline; }
         .dark-col__label {
           font-size: 10px;
           letter-spacing: 1.5px;
@@ -1845,7 +1984,6 @@
           line-height: 100%;
           letter-spacing: normal;
         }
-
         /* ===== AI banner ===== */
         .ai-banner {
           width: 100%;
@@ -1863,11 +2001,11 @@
           letter-spacing: 1.5px;
         }
         .ai-banner h1 {
-          font-size: 24px;
+          font-size: 16px;
           line-height: 110%;
           letter-spacing: 0.2px;
         }
-        .ai-banner h1 br { display: none; }
+        .ai-banner h1 br { display: inline; }
         .ai-banner-footer {
           margin-top: auto;
           display: flex;
@@ -1893,8 +2031,11 @@
           height: auto;
         }
         .anim-voice {
-          padding: 12px;
-          width: 100%;
+          align-self: stretch;
+          width: auto;
+          margin: 12px;
+          padding: 0;
+          box-sizing: border-box;
         }
         .anim-voice__card {
           width: 100%;
@@ -1940,7 +2081,20 @@
         .dark-box {
           border-right: none;
           border-bottom: 0.5px solid rgba(255,255,255,.2);
-          padding: px;
+          padding: 16px;
+        }
+        .dark-row-2col--globe {
+          border: none;
+          box-shadow: none;
+        }
+        .dark-row-2col--globe > .dark-box:first-child {
+          border-right: 0.5px solid rgba(255, 255, 255, 0.2);
+        }
+        .dark-box.dark-box--media.dark-box--globe {
+          padding: 0;
+        }
+        .dark-box.dark-box--media.dark-box--voice {
+          padding: 0;
         }
         .dark-box:last-child { border-bottom: none; }
         .dark-box h2 {
@@ -1971,8 +2125,8 @@
           margin-top: 0;
         }
         .secicon-item {
-          min-height: 164px;
-          padding: 24px 16px;
+          min-height: 32px;
+          padding: 8px 16px;
           border-right: 0.5px solid rgba(255,255,255,.2);
           border-bottom: 0.5px solid rgba(255,255,255,.2);
         }
@@ -1981,7 +2135,7 @@
         .secicon-item:nth-last-child(-n+2) { border-bottom: none; }
         .secicon-title {
           font-family: Inter, sans-serif;
-          font-size: 16px;
+          font-size: 10px;
           font-weight: 400;
           line-height: 100%;
           letter-spacing: 0.2px;
@@ -1989,14 +2143,15 @@
         }
         .secicon-text {
           font-family: Inter, sans-serif;
-          font-size: 12px;
+          font-size: 7px;
           font-weight: 500;
           line-height: 120%;
         }
-        .secicon-text br { display: none; }
+        .secicon-text br { display: inline; }
         .secicon-item img {
-          width: 32px; height: 32px;
-          margin-bottom: 12px;
+          width: 32px; 
+          height: 32px;
+          margin-bottom: 4px;
         }
       }
     </style>
@@ -2089,7 +2244,8 @@
               <div class="stat-card">
                 <article class="anim-kpi-card">
                   <p class="anim-kpi-card__label">ЧИСТАЯ ПРИБЫЛЬ</p>
-                  <div class="anim-kpi-card__gauge">
+                  <div class="anim-kpi-card__body">
+                    <div class="anim-kpi-card__gauge">
                     <div class="anim-kpi-card__dial-wrap" aria-hidden="true">
                       <div class="SyncVisual_syncVisual__pz6oN SyncVisual_inView__3jK1K">
                         <img src="img/sync/outline-sync-module.svg" alt="Outline Sync Module" class="SyncVisual_syncOutline__fqnMF" loading="lazy" decoding="async">
@@ -2113,19 +2269,22 @@
                       </div>
                     </div>
                   </div>
-                  <hr class="anim-kpi-card__rule" />
-                  <p class="anim-kpi-card__delta">+18%</p>
-                  <p class="anim-kpi-card__note">к прошлому месяцу</p>
+                  </div>
+                  <footer class="anim-kpi-card__foot">
+                    <p class="anim-kpi-card__delta">+18%</p>
+                    <p class="anim-kpi-card__note">к прошлому месяцу</p>
+                  </footer>
                 </article>
               </div>
             </div>
           </div>
+          <div class="side-dash-column">
           <div class="grid-row-2">
             <div class="integration-box">
               <h2>16+</h2>
               <div class="sub">Интеграций&nbsp; | Обновление каждые 6 часов</div>
-              <h3>Знает о вашем<br />бизнесе больше, чем вы</h3>
-              <p>WB, Ozon, склад, банк, CRM, календарь,Telegram - 16+ источников данных собраны <br />в одном месте. Вы физически <br />не можете держать <br />это всё в голове. <br />А Иван Иванович - может.</p>
+              <h3>Знает о вашем бизнесе больше,<br />чем вы</h3>
+              <p>WB, Ozon, склад, банк, CRM,<br />календарь,Telegram - 16+ источников данных<br />собраны в одном месте. Вы физически<br />не можете держать это всё в голове.<br />А Иван Иванович - может.</p>
             </div>
             <div class="dark-chart-box">
               <div style="font-size:14px;color:#9c9c9d;margin-bottom:6px;">Интеграции</div>
@@ -2186,7 +2345,7 @@
                   </div>
                 </div>
               </div>
-              <div style="text-align:right;color:#9c9c9d;font-size:16px;line-height:22.4px;margin-top:8px;margin-bottom:8px;">● 3 агента онлайн</div>
+              <div style="text-align:right;color:#9c9c9d;font-size:12px;line-height:16px;margin-top:8px;margin-bottom:8px;">● 3 агента онлайн</div>
               <div class="integrations-list">
                 <div class="integration-item"><span class="integration-item__name"><img src="img/logo_on/wb-short-white.svg" alt="" class="integration-item__logo" loading="lazy" decoding="async" />Wildberries</span><span>синхронизирован</span></div>
                 <div class="integration-item"><span class="integration-item__name"><img src="img/logo_on/ozon.svg" alt="" class="integration-item__logo" loading="lazy" decoding="async" />Ozon</span><span>синхронизирован</span></div>
@@ -2197,12 +2356,12 @@
           </div>
           <div class="grid-row-3">
             <div class="radar-info">
-              <h3 class="radar-info__title">Проблемы найдены<br />до того, как стали<br />убытками</h3>
-              <p class="radar-info__text">28 триггеров сканируют ваш бизнес каждый день. Кассовый разрыв, падение маржи, дефицит товаров — вы узнаете за 2-3 недели до кризиса. С конкретным планом действий.</p>
+              <h3 class="radar-info__title">Проблемы найдены до того,<br />как стали убытками</h3>
+              <p class="radar-info__text">28 триггеров сканируют ваш бизнес каждый день.<br />Кассовый разрыв, падение маржи, дефицит<br />товаров — вы узнаете за 2-3 недели до кризиса.<br />С конкретным планом действий.</p>
               <button class="radar-info__btn">Все 28 триггеров</button>
             </div>
             <div class="radar-stage">
-              <div style="padding: 14px 0 8px; color: #9c9c9d; font-size: 16px; line-height: 22.4px;">● Сканирование 24/7</div>
+              <div class="radar-stage__kicker">● Сканирование 24/7</div>
               <div class="anim-radar" data-anim-radar>
                 <div class="anim-radar__sweep" aria-hidden="true"></div>
                 <svg class="anim-radar__grid" viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true">
@@ -2221,15 +2380,10 @@
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="dark-section">
-        <div class="container">
           <div class="grid-row-4">
             <div class="dark-col">
               <h3>Ваша команда<br />работает<br />эффективнее</h3>
-              <p>Иван Иванович видит каждого<br />сотрудника: КРI, нагрузку,<br />просрочки. Готовит брифинг<br />к встрече за 10 секунд.<br />Вы приходите подготовленным - <br />команда это чувствует.</p>
+              <p>Иван Иванович видит каждого сотрудника: КРI,<br />нагрузку, просрочки. Готовит брифинг<br />к встрече за 10 секунд. Вы приходите<br />подготовленным - команда это чувствует.</p>
             </div>
             <div class="dark-col">
               <div class="dark-col__label">Эффективность команды</div>
@@ -2242,7 +2396,7 @@
                 <div class="eff-bottom-text">2 сотрудника требуют внимания</div>
               </div>
             </div>
-            <div class="dark-col">
+            <div class="dark-col dark-col--employee-rating">
               <div class="dark-col__label">Рейтинг сотрудников</div>
               <div class="employee-list">
                 <div class="employee-item"><span>1 Дмитрий С. В.</span><span>Логистика</span></div>
@@ -2254,6 +2408,12 @@
               </div>
             </div>
           </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="dark-section">
+        <div class="container">
           <div class="ai-banner">
             <div>
               <div class="ai-banner-kicker">ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ</div>
@@ -2264,7 +2424,7 @@
               <div class="ai-banner-text">Чем дольше вы работаете с Иваном Ивановичем,<br />тем точнее его советы. Он учится на ваших данных<br />и опыте тысяч селлеров одновременно.</div>
             </div>
           </div>
-          <div class="dark-row-2col">
+          <div class="dark-row-2col dark-row-2col--voice">
             <div class="dark-box">
               <div class="dark-box-title">ЗНАЕТ ВАШ БИЗНЕС</div>
               <h2>Через месяц — точнее наёмного директора</h2>
@@ -2284,7 +2444,7 @@
             </div>
           </div>
 
-          <div class="dark-row-2col">
+          <div class="dark-row-2col dark-row-2col--globe">
             <div class="dark-box">
               <div class="dark-box-title">ВИДИТ ВЕСЬ РЫНОК</div>
               <h2>Инсайты, которых нет ни у одного консультанта</h2>
