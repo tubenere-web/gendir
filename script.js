@@ -145,34 +145,55 @@
 
   function initIframeAutoResize() {
     document.querySelectorAll(".external-block__frame").forEach(function (frame) {
-      function resize() {
+      var lastHeight = 0;
+      var rafId = 0;
+      var resizeTimer = 0;
+
+      function measureAndApplyHeight() {
         try {
           var doc = frame.contentDocument;
           if (!doc || !doc.body) return;
-          frame.style.height = "1px";
           var h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
-          if (h > 0) frame.style.height = h + "px";
+          if (h <= 0) return;
+          if (Math.abs(h - lastHeight) < 2) return;
+          frame.style.height = h + "px";
+          lastHeight = h;
         } catch (err) {
           /* cross-origin — ignore */
         }
       }
+
+      function scheduleResize() {
+        if (rafId) return;
+        rafId = window.requestAnimationFrame(function () {
+          rafId = 0;
+          measureAndApplyHeight();
+        });
+      }
+
       frame.addEventListener("load", function () {
-        resize();
+        scheduleResize();
         try {
-          var ro = new ResizeObserver(resize);
+          var ro = new ResizeObserver(scheduleResize);
+          ro.observe(frame.contentDocument.documentElement);
           ro.observe(frame.contentDocument.body);
         } catch (err) {
           /* older browsers */
         }
-        setTimeout(resize, 80);
-        setTimeout(resize, 220);
-        setTimeout(resize, 400);
-        setTimeout(resize, 1200);
-        setTimeout(resize, 2200);
+        setTimeout(scheduleResize, 80);
+        setTimeout(scheduleResize, 220);
+        setTimeout(scheduleResize, 400);
+        setTimeout(scheduleResize, 1200);
+        setTimeout(scheduleResize, 2200);
       });
-      window.addEventListener("resize", resize);
+
+      window.addEventListener("resize", function () {
+        if (resizeTimer) window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(scheduleResize, 120);
+      });
+
       if (frame.contentDocument && frame.contentDocument.readyState === "complete") {
-        resize();
+        scheduleResize();
       }
     });
   }
