@@ -1518,7 +1518,6 @@ body::after {
   body {
     display: block;
     padding: 0;
-    touch-action: pan-y;
   }
   body::before,
   body::after {
@@ -1532,6 +1531,7 @@ body::after {
     margin: 0;
     overflow-x: hidden;
     overflow-y: visible;
+    touch-action: pan-y pinch-zoom;
   }
 
   /* Safety: prevent horizontal overflow anywhere inside the page */
@@ -1540,6 +1540,7 @@ body::after {
   }
   .anim-integ-stage {
     overflow-y: visible;
+    isolation: auto;
   }
 
   .page::before,
@@ -2161,6 +2162,11 @@ body::after {
     width: 100%;
     height: 558px;
     aspect-ratio: auto;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .chat-section {
+    touch-action: pan-y pinch-zoom;
   }
 
   .anim-integ__caption--desktop,
@@ -2212,9 +2218,26 @@ body::after {
     gap: 16px;
     padding-right: 16px;
   }
+  /* Карусель не участвует в hit-test: вертикальный скролл не цепляется за transform-анимацию */
+  .anim-integ__viewport {
+    touch-action: pan-y pinch-zoom;
+  }
+  .anim-integ__track,
+  .anim-integ__strip,
+  .anim-integ__chip {
+    pointer-events: none;
+  }
+  .anim-integ__track {
+    will-change: auto;
+  }
+  .anim-integ__logo {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
   .integ-section {
     position: relative;
-    isolation: isolate;
+    /* iOS: лишний stacking-context + анимации transform часто «убивают» скролл после карусели */
+    isolation: auto;
   }
   .integ-section::after {
     content: "";
@@ -2238,7 +2261,7 @@ body::after {
     height: auto;
     min-height: 0;
     display: block;
-    overflow: hidden;
+    overflow: visible;
     margin-bottom: 0;
   }
   .external-block__frame {
