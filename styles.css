@@ -1511,11 +1511,14 @@ body::after {
     width: 100%;
     max-width: 100vw;
     overflow-x: hidden;
+    overflow-y: auto;
     background: #0c1018;
+    -webkit-overflow-scrolling: touch;
   }
   body {
     display: block;
     padding: 0;
+    touch-action: pan-y;
   }
   body::before,
   body::after {
@@ -1527,7 +1530,8 @@ body::after {
     max-width: 100vw;
     padding: 74px 16px 0;
     margin: 0;
-    overflow-x: clip;
+    overflow-x: hidden;
+    overflow-y: visible;
   }
 
   /* Safety: prevent horizontal overflow anywhere inside the page */
@@ -1865,6 +1869,8 @@ body::after {
     flex-direction: row;
     overflow-x: auto;
     overflow-y: visible;
+    touch-action: pan-x;
+    -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     gap: 12px;
     padding: 4px 16px;
