@@ -143,67 +143,6 @@
     window.addEventListener("load", wireFrames);
   }
 
-  function initIframeAutoResize() {
-    document.querySelectorAll(".external-block__frame").forEach(function (frame) {
-      var isMobile = window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
-      var lastHeight = 0;
-      var rafId = 0;
-      var resizeTimer = 0;
-
-      if (isMobile) {
-        frame.style.height = "3200px";
-        frame.style.minHeight = "3200px";
-      }
-
-      function measureAndApplyHeight() {
-        try {
-          var doc = frame.contentDocument;
-          if (!doc || !doc.body) return;
-          var h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
-          if (h <= 0) return;
-          if (Math.abs(h - lastHeight) < 2) return;
-          frame.style.height = h + "px";
-          lastHeight = h;
-        } catch (err) {
-          /* cross-origin — ignore */
-        }
-      }
-
-      function scheduleResize() {
-        if (rafId) return;
-        rafId = window.requestAnimationFrame(function () {
-          rafId = 0;
-          measureAndApplyHeight();
-        });
-      }
-
-      frame.addEventListener("load", function () {
-        scheduleResize();
-        try {
-          var ro = new ResizeObserver(scheduleResize);
-          ro.observe(frame.contentDocument.documentElement);
-          ro.observe(frame.contentDocument.body);
-        } catch (err) {
-          /* older browsers */
-        }
-        setTimeout(scheduleResize, 80);
-        setTimeout(scheduleResize, 220);
-        setTimeout(scheduleResize, 400);
-        setTimeout(scheduleResize, 1200);
-        setTimeout(scheduleResize, 2200);
-      });
-
-      window.addEventListener("resize", function () {
-        if (resizeTimer) window.clearTimeout(resizeTimer);
-        resizeTimer = window.setTimeout(scheduleResize, 120);
-      });
-
-      if (frame.contentDocument && frame.contentDocument.readyState === "complete") {
-        scheduleResize();
-      }
-    });
-  }
-
   function initMobileHeaderMenu() {
     var header = document.querySelector(".main-header");
     if (!header) return;
@@ -242,7 +181,6 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     initCursorGlow();
-    initIframeAutoResize();
     initMobileHeaderMenu();
     document.querySelectorAll("[data-anim-accordion]").forEach(function (root) {
       root.addEventListener("click", function (event) {

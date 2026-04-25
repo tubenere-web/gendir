@@ -417,14 +417,6 @@ body::after {
   width: 1204px;
 }
 
-.external-block__frame {
-  width: 1204px;
-  height: 4200px;
-  border: 0;
-  display: block;
-  background: transparent;
-}
-
 .final-hero {
   width: 1204px;
   min-height: 760px;
@@ -2263,16 +2255,6 @@ body::after {
     display: block;
     overflow: visible;
     margin-bottom: 0;
-  }
-  .external-block__frame {
-    width: 100%;
-    /* Fallback до load/resize iframe: не даем странице "заканчиваться" раньше времени */
-    height: 3200px;
-    min-height: 3200px;
-    display: block;
-    border: 0;
-    /* iOS/Android: iframe перехватывал свайпы и "клеил" вертикальный скролл страницы */
-    pointer-events: none;
   }
 
   .final-hero {
